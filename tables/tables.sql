@@ -28,8 +28,8 @@ CREATE TABLE Joueurs(
     pseudo VARCHAR(50) NOT NULL,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
-    date_naissance DATE NOT NULL,
-    id_nationalite NOT NULL REFERENCES Nationnalites(id_nationalite),
+    date_naissance DATE,
+    id_nationalite INTEGER NOT NULL REFERENCES Nationalites(id_nationalite)
 );
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -94,7 +94,7 @@ CREATE TABLE Coachs(
     pseudo_coach VARCHAR(50) NOT NULL,
     nom_coach VARCHAR(50) NOT NULL,
     prenom_coach VARCHAR(50) NOT NULL,
-    id_nationalite NOT NULL REFERENCES Nationnalites(id_nationalite)
+    id_nationalite INTEGER NOT NULL REFERENCES Nationalites(id_nationalite)
 );
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -115,8 +115,8 @@ Description : Table contenant différentes statistiques sur les joueurs professi
 -- Explication supplémentaire
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 CREATE TABLE StatistiquesJoueursParMatch(
-    id_match NOT NULL REFERENCES Matchs(id_match) ,
-    id_joueur NOT NULL REFERENCES Joueurs(id_joueur),
+    id_match INTEGER NOT NULL REFERENCES Matchs(id_match) ,
+    id_joueur INTEGER NOT NULL REFERENCES Joueurs(id_joueur),
     nb_kills INTEGER,
     morts INTEGER,
     assists INTEGER,
@@ -131,12 +131,13 @@ Explication supplémentaire
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 CREATE TABLE Matchs(
     id_match SERIAL PRIMARY KEY,
-    id_equipe_1  NOT NULL REFERENCES Equipes(id_equipe),
-    id_equipe_2  NOT NULL REFERENCES Equipes(id_equipe),
+    id_equipe_1  INTEGER NOT NULL REFERENCES Equipes(id_equipe),
+    id_equipe_2  INTEGER NOT NULL REFERENCES Equipes(id_equipe),
     date_match DATE NOT NULL,
-    duree_match INTEGER NOT NULL,
+    duree_match MINUTES NOT NULL,
     vainqueur INTEGER NOT NULL,
-    perdant INTEGER NOT NULL
+    perdant INTEGER NOT NULL,
+    num_semaine INTEGER NOT NULL
 );
 
 
