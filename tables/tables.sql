@@ -120,7 +120,7 @@ CREATE TABLE StatistiquesJoueursParMatch(
     nb_kills INTEGER,
     morts INTEGER,
     assists INTEGER,
-    total_creeps INTEGER,
+    total_creeps INTEGER
 );
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
