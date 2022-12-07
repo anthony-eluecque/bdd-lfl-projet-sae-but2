@@ -15,6 +15,16 @@ Le but de chaque equipe est de briser le nexus adverse pour remportés la partie
 Une partie contient 5 rôles distincts comme TopLaner (celui qui va jouer en haut de la carte), Jungler (celui qui va se balader sur la carte pour apporter de l'aide à ses alliés ou réaliser les objectifs), MidLaner (celui qui va jouer au milieu de la carte), AD Carry (celui qui va jouer en bas de la carte) et enfin Support (celui qui va accompagner l'AD Carry dans ses déplacements).
 Il y a donc des champions favorables à aller sur certaines lanes.
 
+-- Rôle : Toplaner --
+
+-- Rôle : Jungler --
+
+-- Rôle : Midlaner --
+
+-- Rôle : AD Carry --
+
+-- Rôle : Support --
+
 -- Les Champions --
 
 Pour jouer une partie de League Of Legends, il faut tout d'abord choisir un champion, donc chaque joueur choisi 1 champion durant la draft.
@@ -33,5 +43,11 @@ Les dragons qui donnent des bonus permanents à l'équipe lorsqu'ils sont tués 
 Ensuite le hérault de la faille, qui se trouve à l'opposé du dragon, et qui apparait la première fois à 8 minutes et une deuxième fois 6 minutes après qu'il soit tué. Le hérault de la faille ne peut apparaître après 20 minutes. L'équipe qui tue le hérault pourra pendant un court laps de temps détruire plus rapidement les batiments ennemi.
 
 Enfin, à 20 minutes puis 6 minutes après être tués, le baron nashor apparaît au même endroit que le hérault de la faille, celui ci donne des bonus non-permanent à l'équipe qui le tue, ces bonus font effets pendant 3 minutes et permettent de détruire plus rapidement les batiments ennemi.
+
+-- L'Or --
+
+
+
+
 
 
