@@ -62,10 +62,16 @@ INSERT INTO Joueurs(pseudo, nom, prenom , date_naissance , id_nationalite) VALUE
 ('Akabane', 'LE', 'Philippe', '15-10-2000', 64),
 ('Czekolad', 'SZCZEPANIK', 'Pawel', '15-02-2003', 144),
 ('Innaxe', 'ALIEV', 'Nihat', '23-03-1999', 27),
-('Kamilius', 'KOST')
+('Kamilius', 'KOSTAL', 'Kamil', '06-07-2000', 162),
 -- MIRAGE ELYANDRA
-('Badlulu', 'PIOCHAUD', 'Lucas','',)
-('Memento','','','',)
-('RangJun','','','',)
-('CodySun','','','')
-('Raxxo')
+('Badlulu', 'PIOCHAUD', 'Lucas','13-09-2002',64),
+('Memento','ELMARGHICHI','Jonas','26-04-2002',174),
+('RangJun','SANG-JUN','KIM','03-06-2003',167),
+('CodySun','LIYU','Sun','25-04-1997',33),
+('Raxxo','BAZYDLO','Oskar','12-10-1996',144),
+-- TEAM OPLON
+('Darlik', 'GARCON', 'Aymeric', '28-09-1997', 64),
+('Shernfire', 'CHERNG TAI', 'Shern', '04-05-1998', 109),
+('Peng','SHEN','Pengcheng','18-03-2004', 38),
+('Bung','GRAMM','Jacok','31-10-1999', 11),
+('Twiitz','RICHIE GARCIA SPATSIG','Elton',NULL,173);
