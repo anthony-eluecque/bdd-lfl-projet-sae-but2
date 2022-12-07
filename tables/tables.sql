@@ -28,9 +28,8 @@ CREATE TABLE Joueurs(
     pseudo VARCHAR(50) NOT NULL,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
-    age INTEGER NOT NULL,
+    date_naissance DATE NOT NULL,
     id_nationalite NOT NULL REFERENCES Nationnalites(id_nationalite),
-    id_equipe NOT NULL REFERENCES Equipes(id_equipe)
 );
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -40,12 +39,12 @@ Description : Table contenant la liste des joueurs de chaque équipe, avec leur 
 -- Explication supplémentaire 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 CREATE TABLE Jouer_dans(
-    id_role NOT NULL REFERENCES Roles(id_role),
-    id_joueur NOT NULL REFERENCES Joueurs(id_joueur),
-    id_equipe NOT NULL REFERENCES Equipes(id_equipe),
-    debut_contrat VARCHAR(50),
-    fin_contrat VARCHAR(50)
-)
+    id_joueur INTEGER NOT NULL REFERENCES Joueurs(id_joueur),
+    id_role INTEGER NOT NULL REFERENCES Roles(id_role),
+    id_equipe INTEGER NOT NULL REFERENCES Equipes(id_equipe),
+    debut_contrat DATE NOT NULL,
+    fin_contrat DATE
+);
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 Table Equipees
@@ -57,7 +56,7 @@ CREATE TABLE Equipes(
     id_equipe SERIAL PRIMARY KEY,
     nom_equipe VARCHAR(50) NOT NULL,
     date_creation DATE NOT NULL,
-    id_coach NOT NULL REFERENCES Coachs(id_coach)
+    id_coach INTEGER NOT NULL REFERENCES Coachs(id_coach)
 );
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -136,7 +135,11 @@ CREATE TABLE Matchs(
     id_equipe_2  NOT NULL REFERENCES Equipes(id_equipe),
     date_match DATE NOT NULL,
     duree_match INTEGER NOT NULL,
+    vainqueur INTEGER NOT NULL,
+    perdant INTEGER NOT NULL
 );
+
+
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
                                         FIN DU SCRIPT
