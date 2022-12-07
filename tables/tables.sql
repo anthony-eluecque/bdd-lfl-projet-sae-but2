@@ -79,7 +79,9 @@ Description : Table composée des différents champions jouablent dans le jeu Le
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 CREATE TABLE Champions(
     id_champion SERIAL PRIMARY KEY,
-    nom_champion VARCHAR(50)
+    nom_champion VARCHAR(50),
+    id_role_1 INTEGER NOT NULL REFERENCES Roles(id_role),
+    id_role_2 INTEGER REFERENCES Roles(id_role)
 );
 
 /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -102,7 +104,7 @@ Description : Table Répertoriant des nationalités.
 
 -- Explication supplémentaire
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-CREATE TABLE Nationnalites(
+CREATE TABLE Nationalites(
     id_nationalite SERIAL PRIMARY KEY,
     libelle_nationalite VARCHAR(50)
 );
