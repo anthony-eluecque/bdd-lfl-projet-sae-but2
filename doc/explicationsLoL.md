@@ -3,7 +3,7 @@
 -- La Carte --
 
 
-<img src="./img/carte_lol.png">
+<img src="../img/carte_lol.png">
 
 
 -- Gagner Une Partie --
