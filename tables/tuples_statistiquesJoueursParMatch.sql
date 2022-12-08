@@ -13,7 +13,14 @@
 
 -- TUPLES POUR LA TABLE STATISTIQUESJOUEURSPARMATCH DE LA DATABASE LEAGUE OF LEGENDS LFL 2022 --
 
-insert into StatistiquesJoueursParMatch (id_match , id_joueur, nb_kills, morts, assists, total_creeps) VALUES
+insert into StatistiquesJoueursParMatch (
+    id_match , 
+    id_joueur, 
+    nb_kills, 
+    morts, 
+    assists, 
+    total_creeps
+) VALUES
 
 -- ■■■■■■■■■■■■■■■■■■■■ WEEK 1 ■■■■■■■■■■■■■■■■■■■■ --
 
