@@ -9,7 +9,7 @@
 -- Gagner Une Partie --
 
 Le but de chaque equipe est de briser le nexus adverse pour remportés la partie. Le nexus est defendu par des tours et des inibihteurs qui doivent être détruit avant de pouvoir casser le nexus. Les joueurs ont donc un rôle d'attaque et de défense, ils doivent à la fois détruire les tours et nexus ennemis mais aussi défendre leurs tours et leur nexus. 
-La façon de gagner une partie se fait tout au long de la partie en prenant l'avantage sur l'or, sur l'expérience et sur les objectifs durant la partie mais aussi prendre un avantage durant la draft en prenant des champions qui sont plus forts que d'autres 
+La façon de gagner une partie se fait tout au long de la partie en prenant l'avantage sur l'or, sur l'expérience et sur les objectifs durant la partie mais aussi prendre un avantage durant la draft en prenant des champions qui sont plus forts que d'autres et donc d'adopter une stratégie même avant la partie.
 
 -- Les Rôles --
 
@@ -18,13 +18,23 @@ Il y a donc des champions favorables à aller sur certaines lanes.
 
 -- Rôle : Toplaner --
 
+Le Toplaner est le rôle où le joueur se trouve sur le haut de la carte
+
 -- Rôle : Jungler --
+
+Le jungler est le rôle va se déplacer sur toute la carte
 
 -- Rôle : Midlaner --
 
+Le Midlaner est le rôle où le joueur se trouve sur le milieu de la carte
+
 -- Rôle : AD Carry --
 
+L'AD Carry est le rôle où le joueur se trouve en bas de la carte
+
 -- Rôle : Support --
+
+Le Support est le rôle où le joueur va accompagner l'AD Carry dans ses déplacements et le supporter
 
 -- Les Champions --
 
@@ -33,7 +43,7 @@ Les Champions ont tous un ou plusieurs rôles spécifiques, et sont choisi en fo
 
 -- La Draft --
 
-La Draft est l'avant match, c'est le moment où chaque équipe peuvent bannir 5 champions qui ne pourront pas être jouer pendant la partie, ce qui fait 10 champions non-jouable, puis chque équipe choisit 5 champions à tour de rôle
+La Draft est un moment cruciale avant le match, car elle permet de choisir les champions qui vont être joués durant la partie et donc d'adopter une stratégie et de choisir des champions en fonction des champions ennemis déjà choisi. Mais aussi faire une stratégie car durant la Draft les 2 équipes peuvent bannir 5 champions qui ne pourront pas être jouer pendant la partie, ce qui fait 10 champions non-jouable
 
 -- Les Objectifs neutre --
 
