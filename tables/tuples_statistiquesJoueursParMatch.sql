@@ -17,6 +17,8 @@ insert into StatistiquesJoueursParMatch (id_match , id_joueur, nb_kills, morts, 
 
 -- ■■■■■■■■■■■■■■■■■■■■ WEEK 1 ■■■■■■■■■■■■■■■■■■■■ --
 
+-- ■■■■■■■■■■■■■■■■■■■ DAY 1 ■■■■■■■■■■■■■■■■■■■ --
+
 -- BDS VS LDLC OL
 (1,6, 2, 3, 4, 284), -- 116 Sion    /// Perso ban : 143 Viego
 (1,7, 5, 2, 4, 203), -- 39 Graves   /// Perso ban : 40 Gwen
@@ -81,6 +83,8 @@ insert into StatistiquesJoueursParMatch (id_match , id_joueur, nb_kills, morts, 
 (5,43, 0, 5, 2, 230), -- 90 Orianna   /// Perso ban : 125 Taliyah
 (5,44, 1, 2, 1, 269), -- 149 Xayah    /// Perso ban : 55 Karma
 (5,45, 0, 5, 3, 33),  -- 83 Nautilus  /// Perso ban : 101 Renata Glasc
+
+-- ■■■■■■■■■■■■■■■■■■■ DAY 2 ■■■■■■■■■■■■■■■■■■■ --
 
 -- Team GO VS Misfits
 (6,26, 3, 2, 4, 220), -- 40 Gwen        /// Perso ban : 131 Trundle

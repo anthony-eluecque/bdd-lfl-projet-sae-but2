@@ -9,6 +9,7 @@
 -- Gagner Une Partie --
 
 Le but de chaque equipe est de briser le nexus adverse pour remportés la partie. Le nexus est defendu par des tours et des inibihteurs qui doivent être détruit avant de pouvoir casser le nexus. Les joueurs ont donc un rôle d'attaque et de défense, ils doivent à la fois détruire les tours et nexus ennemis mais aussi défendre leurs tours et leur nexus. 
+La façon de gagner une partie se fait tout au long de la partie en prenant l'avantage sur l'or, sur l'expérience et sur les objectifs durant la partie mais aussi prendre un avantage durant la draft en prenant des champions qui sont plus forts que d'autres 
 
 -- Les Rôles --
 
@@ -45,6 +46,14 @@ Ensuite le hérault de la faille, qui se trouve à l'opposé du dragon, et qui a
 Enfin, à 20 minutes puis 6 minutes après être tués, le baron nashor apparaît au même endroit que le hérault de la faille, celui ci donne des bonus non-permanent à l'équipe qui le tue, ces bonus font effets pendant 3 minutes et permettent de détruire plus rapidement les batiments ennemi.
 
 -- L'Or --
+
+L'Or est une ressource fondamental dans League Of Legends car cette ressource permet d'acheter des objets, qui donnent des statistiques bonus aux champions sur lesquels les objets sont équipés. Les objets sont essentiels car ils permettent de prendre un avantage sur son adversaire. Donc pour prendre l'avantage, il faut plus d'or que l'adversaire. Comment gagner cet or ? Il y a plusieurs façons, la première est de tuer les sbires ennemis, ces sbires donnent un montant d'or différent en fonction de leur type (Guerrier, Mage ou Canon) <img src="../img/canon.png">
+Une autre source d'or, en tuant les champions ennemis et c'est à ce moment là qu'intervient le fait de combat entre chaque joueur pour prendre un avantage dans la partie.
+La dernière source d'or et qui est exploité le plus par le jungler, sont les monstres dans la jungle, chaque camps donnent une centaine d'or
+
+-- L'expérience --
+
+L'expérience des champions dans la partie découle directement de l'or car en tuant des sbires, des champions, des monstres de la jungle de l'expérience est gagné. L'expérience permet d'augmenter le niveau de son champion avec un maximum de 18 et à chaque nouveau niveau, le champion gagne des statistiques (ces améliorations sont différentes entre tous les champions) et le joueur peut choisir une attaque, parmis les 4, du champions à améliorer.
 
 
 
