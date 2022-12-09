@@ -54,6 +54,14 @@ CREATE TABLE classement_LFL(
     nb_lose INTEGER NOT NULL
 );
 
+CREATE TABLE statistique_LFL(
+    id_equipe INTEGER PRIMARY KEY,
+    winrate FLOAT ,
+    kda_equipe FLOAT --,
+    -- moyenne_duree_game TIME
+);
+
+
 CREATE TRIGGER classement_equipe
 AFTER INSERT ON Matchs -- Utilisation du mot insert
 FOR EACH ROW 
@@ -66,7 +74,6 @@ DECLARE
 
     nb_win_existantes classement_LFL.nb_lose%type;
     nb_loses_existantes classement_LFL.nb_win%type;
-
 
 BEGIN
 
@@ -95,7 +102,75 @@ BEGIN
         UPDATE classement_LFL SET nb_lose = nb_loses_existantes WHERE id_equipe = v_id_equipe_perdante;
     END IF;
 
+
+
     RETURN NEW;
+END;
+$$ language plpgsql;
+
+
+CREATE TRIGGER trigger_gestion_stats_equipes()
+AFTER INSERT ON classement_LFL
+FOR EACH ROW 
+EXECUTE PROCEDURE 
+
+
+CREATE OR REPLACE FUNCTION gestion_stats_equipes()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_winrate statistique_LFL.winrate%type;
+    -- v_duree_avg statistique_LFL.moyenne_duree_game%type;
+
+    -- v_duree_match Matchs.duree_match%type;
+    v_id_equipe;
+
+    -- Kill + Assist / Morts
+    -- Si mort == 0 Kill + assist seulement
+
+BEGIN
+    SELECT id_equipe INTO v_id_equipe FROM classement_LFL WHERE id_equipe = new.id_equipe;
+
+    IF (v_id_equipe IS NULL) THEN 
+
+        INSERT INTO statistique_LFL values(v_id_equipe,100,0);
+    ELSE
+
+
+        
+    -- A finir quand on aura le KDA pour un joueur
+
+    END IF;
+
+END;
+$$ language plpgsql;
+
+
+-- Calcul KDA d'un Joueur par son ID
+CREATE OR REPLACE FUNCTION calcul_kda_joueur(v_id_joueur Joueurs.id_joueur%type)
+RETURNS DECIMAL AS $$
+DECLARE
+    v_kills INTEGER;
+    v_morts INTEGER;
+    v_assists INTEGER;
+
+BEGIN
+    v_kills:=0;
+    v_morts:=0;
+    v_assists:=0;
+
+    IF (v_id_joueur IN (SELECT id_joueur FROM joueurs)) THEN
+        SELECT SUM(kills_joueur) INTO v_kills FROM Historique_Matchs WHERE id_joueur = v_id_joueur;
+        SELECT SUM(mort_joueur) INTO v_morts FROM Historique_Matchs WHERE id_joueur = v_id_joueur;
+        SELECT SUM(assists_joueur) INTO v_assists FROM Historique_Matchs WHERE id_joueur = v_id_joueur;
+
+        IF (v_morts > 0) THEN 
+            RETURN ROUND(((v_kills::DECIMAL+v_assists::DECIMAL) / v_morts::DECIMAL),3); -- Cas ou le joueur est mort.
+        ELSE
+            RETURN ROUND((v_kills::DECIMAL+v_assists::DECIMAL),3); -- Cas ou il n'est pas mort et une division par 0 est impossible.
+        END IF;
+    ELSE
+        raise exception 'Valeur incorrect, id n existe pas dans la base de donnée des joueurs';
+    END IF;
 END;
 $$ language plpgsql;
 
@@ -117,4 +192,11 @@ BEGIN
     END IF;
 END;
 $$ language plpgsql;
+
+
+
+
+
+
+
 
