@@ -18,14 +18,14 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
         <tr>
         <td>Equipe</td>
             <td>Coach</td>
-            <td>Toplaner<img src="../img/top.png"></td>
-            <td>Jungler<img src="../img/Jungle.png"></td>
-            <td>Midlaner<img src="../img/mid.png"></td>
-            <td>AD Carry<img src="../img/ADC.png"></td>
-            <td>Support<img src="../img/support.png"></td>
+            <td>Toplaner<img src="../img/top.png" width="75"></td>
+            <td>Jungler<img src="../img/Jungle.png" width="75"></td>
+            <td>Midlaner<img src="../img/mid.png" width="75"></td>
+            <td>AD Carry<img src="../img/ADC.png" width="75"></td>
+            <td>Support<img src="../img/support.png" width="75"></td>
         </tr>
         <tr>
-            <td>LDLC OL<img src="../img/LDLCOL.png"></td>        
+            <td>LDLC OL<img src="../img/LDLCOL.png" width="75"></td>        
             <td>Ragner</td>
             <td>Yike</td>
             <td>Eika</td>
@@ -34,7 +34,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Zeph</td>
         </tr>
         <tr>
-            <td>BDS Academy<img src="../img/BDSA.png"></td>        
+            <td>BDS Academy<img src="../img/BDSA.png" width="75"></td>        
             <td>Adam</td>
             <td>Sheo</td>
             <td>Reeker</td>
@@ -43,7 +43,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>GoToOne</td>
         </tr>
         <tr>
-            <td>Karmine Corp<img src="../img/KC.png"></td>          
+            <td>Karmine Corp<img src="../img/KC.png" width="75"></td>          
             <td>Cabochard</td>
             <td>113</td>
             <td>Saken</td>
@@ -52,7 +52,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Striker</td>
         </tr>
         <tr>
-            <td>Vitality.Bee<img src="../img/VitaBee.png"></td>
+            <td>Vitality.Bee<img src="../img/VitaBee.png" width="75"></td>
             <td>Szygenda</td>
             <td>Skeanz</td>
             <td>Diplex</td>
@@ -61,7 +61,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Realistik</td>
         </tr>
         <tr>
-            <td>Misfits Premier<img src="../img/mp.png"></td>          
+            <td>Misfits Premier<img src="../img/mp.png" width="75"></td>          
             <td>Kackos</td>
             <td>Shlatan</td>
             <td>Czajek</td>
@@ -70,7 +70,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Delord</td>
         </tr>
         <tr>
-            <td>Team Go<img src="../img/GO.png"></td>       
+            <td>Team Go<img src="../img/GO.png" width="75"></td>       
             <td>NuQ</td>
             <td>Karim KT</td>
             <td>Ronaldo</td>
@@ -79,7 +79,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Jesiz</td>
         </tr>
         <tr>
-            <td>Solary<img src="../img/Solary.png"></td>         
+            <td>Solary<img src="../img/Solary.png" width="75"></td>         
             <td>Kio</td>
             <td>Djoko</td>
             <td>Scarlet</td>
@@ -88,7 +88,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Jon</td>
         </tr>
         <tr>
-            <td>Gameward<img src="../img/GameWard.png"></td>    
+            <td>Gameward<img src="../img/GameWard.png" width="75"></td>    
             <td>Melonik</td>
             <td>Akabane</td>
             <td>Czekolad</td>
@@ -97,7 +97,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Malau</td>
         </tr>
         <tr>
-            <td>Mirage Elyandra<img src="../img/ME.png"></td>
+            <td>Mirage Elyandra<img src="../img/ME.png" width="75"></td>
             <td>Badlulu</td>
             <td>Memento</td>
             <td>RangJun</td>
@@ -106,7 +106,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Hellombre</td>
         </tr>
         <tr>
-            <td>Team Oplon<img src="../img/oplon.png"></td>
+            <td>Team Oplon<img src="../img/oplon.png" width="75"></td>
             <td>Darlik</td>
             <td>Shernfire</td>
             <td>Peng</td>
