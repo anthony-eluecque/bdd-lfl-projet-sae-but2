@@ -1,8 +1,3 @@
-CREATE TRIGGER verification_matchs
-BEFORE INSERT ON Matchs -- Utilisation du mot before
-FOR EACH ROW 
-EXECUTE PROCEDURE verif_insert_matchs();
-
 CREATE OR REPLACE FUNCTION verif_insert_matchs() RETURNS TRIGGER AS $$
 BEGIN
     IF ((new.id_equipe_1 = new.vainqueur OR new.id_equipe_1 = new.perdant)
@@ -14,3 +9,8 @@ BEGIN
     END IF;
 END;
 $$ language plpgsql;
+
+CREATE TRIGGER verification_matchs
+BEFORE INSERT ON Matchs -- Utilisation du mot before
+FOR EACH ROW 
+EXECUTE PROCEDURE verif_insert_matchs();

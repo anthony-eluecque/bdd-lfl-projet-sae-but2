@@ -1,8 +1,3 @@
-CREATE TRIGGER classement_equipe
-AFTER INSERT ON Matchs -- Utilisation du mot insert
-FOR EACH ROW 
-EXECUTE PROCEDURE gestion_classement();
-
 CREATE OR REPLACE FUNCTION gestion_classement() RETURNS TRIGGER AS $$
 DECLARE
     v_id_equipe_gagnante classement_LFL.id_equipe%type;
@@ -43,3 +38,8 @@ BEGIN
     RETURN NEW;
 END;
 $$ language plpgsql;
+
+CREATE TRIGGER classement_equipe
+AFTER INSERT ON Matchs -- Utilisation du mot insert
+FOR EACH ROW 
+EXECUTE PROCEDURE gestion_classement();
