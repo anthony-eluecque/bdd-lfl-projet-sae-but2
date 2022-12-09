@@ -57,8 +57,8 @@ CREATE TABLE classement_LFL(
 CREATE TABLE statistique_LFL(
     id_equipe INTEGER PRIMARY KEY,
     winrate FLOAT ,
-    kda_equipe FLOAT --,
-    -- moyenne_duree_game TIME
+    kda_equipe FLOAT,
+    moyenne_duree_game TIME
 );
 
 
@@ -109,40 +109,91 @@ END;
 $$ language plpgsql;
 
 
-CREATE TRIGGER trigger_gestion_stats_equipes()
-AFTER INSERT ON classement_LFL
+CREATE TRIGGER trigger_gestion_stats_equipes
+AFTER INSERT OR UPDATE ON classement_LFL
 FOR EACH ROW 
-EXECUTE PROCEDURE 
+EXECUTE PROCEDURE gestion_stats_equipes();
 
 
+DROP FUNCTION gestion_stats_equipes CASCADE;
+DROP TABLE statistique_LFL;
+-- Fonction permettant de mettre à jour automatiquement la table statistiques LFL.
 CREATE OR REPLACE FUNCTION gestion_stats_equipes()
 RETURNS TRIGGER AS $$
 DECLARE
     v_winrate statistique_LFL.winrate%type;
-    -- v_duree_avg statistique_LFL.moyenne_duree_game%type;
-
-    -- v_duree_match Matchs.duree_match%type;
-    v_id_equipe;
-
-    -- Kill + Assist / Morts
-    -- Si mort == 0 Kill + assist seulement
+    v_id_equipe Equipes.id_equipe%type;
 
 BEGIN
-    SELECT id_equipe INTO v_id_equipe FROM classement_LFL WHERE id_equipe = new.id_equipe;
-
+    SELECT id_equipe INTO v_id_equipe FROM statistique_LFL WHERE id_equipe = new.id_equipe;
     IF (v_id_equipe IS NULL) THEN 
-
-        INSERT INTO statistique_LFL values(v_id_equipe,100,0);
+        INSERT INTO statistique_LFL values(
+            new.id_equipe,
+            calcul_winrate_equipe(new.id_equipe),
+            calcul_kda_equipe(new.id_equipe),
+            calcul_duree_moyenne_matchs_equipe(new.id_equipe));
     ELSE
-
-
-        
-    -- A finir quand on aura le KDA pour un joueur
-
+        UPDATE statistique_LFL SET
+            winrate = calcul_winrate_equipe(v_id_equipe),
+            kda_equipe = calcul_kda_equipe(v_id_equipe),
+            moyenne_duree_game = calcul_duree_moyenne_matchs_equipe(id_equipe)
+        WHERE id_equipe = v_id_equipe;
     END IF;
-
+    RETURN new;
 END;
 $$ language plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION calcul_duree_moyenne_matchs_equipe(v_id_equipe Equipes.id_equipe%type)
+RETURNS TIME AS $$
+BEGIN
+    RETURN AVG(duree_match) FROM Matchs WHERE id_equipe_1 = v_id_equipe OR id_equipe_2 = v_id_equipe;
+END;
+$$ language plpgsql;
+
+
+-- Calcul d'un Winrate à partir d'un ID d'équipe
+CREATE OR REPLACE FUNCTION calcul_winrate_equipe(v_id_equipe Equipes.id_equipe%type)
+RETURNS DECIMAL as $$ 
+DECLARE
+
+    total_wins INTEGER;
+    total_matchs INTEGER;
+
+BEGIN
+    SELECT COUNT(vainqueur) INTO total_wins FROM Matchs WHERE vainqueur = v_id_equipe;
+    SELECT COUNT(id_match) INTO total_matchs FROM Matchs WHERE id_equipe_1 = v_id_equipe OR id_equipe_2 = v_id_equipe;
+    RETURN ROUND(((total_wins::DECIMAL) / total_matchs::DECIMAL),2)*100;
+END;
+$$ language plpgsql;
+
+
+-- Calcul KDA d'une Equipe entière par l'id de l'équipe
+CREATE OR REPLACE FUNCTION calcul_kda_equipe(v_id_equipe Equipes.id_equipe%type)
+RETURNS DECIMAL AS $$ 
+DECLARE 
+
+    total_kda DECIMAL;
+    
+    v_id_joueur Joueurs.id_joueur%type;
+    v_curseur CURSOR FOR SELECT id_joueur from Jouer_Dans WHERE id_equipe = v_id_equipe;
+
+BEGIN 
+    total_kda:=0;
+    OPEN v_curseur;
+    LOOP 
+        FETCH v_curseur INTO v_id_joueur;
+        EXIT WHEN NOT FOUND;
+        -- raise notice 'Kda du joueur : %',calcul_kda_joueur(v_id_joueur);
+        total_kda = total_kda + calcul_kda_joueur(v_id_joueur);
+    END LOOP;
+    total_kda = total_kda/5;
+    CLOSE v_curseur;
+    RETURN total_kda;
+END;
+$$ language plpgsql;
+
 
 
 -- Calcul KDA d'un Joueur par son ID
@@ -173,6 +224,12 @@ BEGIN
     END IF;
 END;
 $$ language plpgsql;
+
+
+
+
+
+
 
 
 -- Check In que les inserts sont correct, sinon soucis au niveau des logs
