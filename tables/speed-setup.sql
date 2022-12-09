@@ -8,6 +8,262 @@ CREATE TABLE Nationalites(
     libelle_nationalite VARCHAR(50)
 );
 
+CREATE TABLE Coachs(
+    id_coach SERIAL PRIMARY KEY,
+    pseudo_coach VARCHAR(50) NOT NULL,
+    nom_coach VARCHAR(50) NOT NULL,
+    prenom_coach VARCHAR(50) NOT NULL,
+    id_nationalite INTEGER NOT NULL REFERENCES Nationalites(id_nationalite)
+);
+
+CREATE TABLE Equipes(
+    id_equipe SERIAL PRIMARY KEY,
+    nom_equipe VARCHAR(50) NOT NULL,
+    date_creation DATE NOT NULL,
+    id_coach INTEGER NOT NULL REFERENCES Coachs(id_coach)
+);
+
+CREATE TABLE Matchs(
+    id_match SERIAL PRIMARY KEY,
+    id_equipe_1  INTEGER NOT NULL REFERENCES Equipes(id_equipe),
+    id_equipe_2  INTEGER NOT NULL REFERENCES Equipes(id_equipe),
+    date_match DATE NOT NULL,
+    duree_match TIME NOT NULL,
+    vainqueur INTEGER NOT NULL,
+    perdant INTEGER NOT NULL,
+    num_semaine INTEGER NOT NULL
+);
+
+CREATE TABLE Roles(
+    id_role SERIAL PRIMARY KEY,
+    nom_role VARCHAR(50)
+);
+
+CREATE TABLE Joueurs(
+    id_joueur SERIAL PRIMARY KEY,
+    pseudo VARCHAR(50) NOT NULL,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    date_naissance DATE,
+    id_nationalite INTEGER NOT NULL REFERENCES Nationalites(id_nationalite)
+);
+
+CREATE TABLE Champions(
+    id_champion SERIAL PRIMARY KEY,
+    nom_champion VARCHAR(50),
+    id_role_1 INTEGER NOT NULL REFERENCES Roles(id_role),
+    id_role_2 INTEGER REFERENCES Roles(id_role)
+);
+
+CREATE TABLE Jouer_dans(
+    id_joueur INTEGER NOT NULL REFERENCES Joueurs(id_joueur),
+    id_role INTEGER NOT NULL REFERENCES Roles(id_role),
+    id_equipe INTEGER NOT NULL REFERENCES Equipes(id_equipe),
+    debut_contrat DATE NOT NULL,
+    fin_contrat DATE
+);
+
+CREATE TABLE Historique_Matchs(
+    id_historique_match SERIAL PRIMARY KEY,
+    id_match INTEGER NOT NULL REFERENCES Matchs(id_match),
+    id_joueur INTEGER NOT NULL REFERENCES Joueurs(id_joueur),
+    id_champion_choisi INTEGER NOT NULL REFERENCES Champions(id_champion),
+    id_champion_banni INTEGER NOT NULL REFERENCES Champions(id_champion),
+    kills_joueur INTEGER NOT NULL,
+    mort_joueur INTEGER NOT NULL,
+    assists_joueur INTEGER NOT NULL,
+    total_creeps_tues INTEGER NOT NULL
+);
+
+-- Nécessaire pour utiliser les trigger
+CREATE TABLE classement_LFL(
+    id_equipe INTEGER PRIMARY KEY,
+    nb_win INTEGER NOT NULL,
+    nb_lose INTEGER NOT NULL
+);
+
+CREATE TABLE statistique_LFL(
+    id_equipe INTEGER PRIMARY KEY,
+    winrate FLOAT ,
+    kda_equipe FLOAT,
+    moyenne_duree_game TIME
+);
+
+CREATE OR REPLACE FUNCTION calcul_kda_joueur(v_id_joueur Joueurs.id_joueur%type)
+RETURNS DECIMAL AS $$
+DECLARE
+    v_kills INTEGER;
+    v_morts INTEGER;
+    v_assists INTEGER;
+
+BEGIN
+    v_kills:=0;
+    v_morts:=0;
+    v_assists:=0;
+
+    IF (v_id_joueur IN (SELECT id_joueur FROM joueurs)) THEN
+        SELECT SUM(kills_joueur) INTO v_kills FROM Historique_Matchs WHERE id_joueur = v_id_joueur;
+        SELECT SUM(mort_joueur) INTO v_morts FROM Historique_Matchs WHERE id_joueur = v_id_joueur;
+        SELECT SUM(assists_joueur) INTO v_assists FROM Historique_Matchs WHERE id_joueur = v_id_joueur;
+
+        IF (v_morts > 0) THEN 
+            RETURN ROUND(((v_kills::DECIMAL+v_assists::DECIMAL) / v_morts::DECIMAL),3); -- Cas ou le joueur est mort.
+        ELSE
+            RETURN ROUND((v_kills::DECIMAL+v_assists::DECIMAL),3); -- Cas ou il n'est pas mort et une division par 0 est impossible.
+        END IF;
+    ELSE
+        raise exception 'Valeur incorrect, id n existe pas dans la base de donnée des joueurs';
+    END IF;
+END;
+$$ language plpgsql;
+
+
+CREATE OR REPLACE FUNCTION calcul_kda_equipe(v_id_equipe Equipes.id_equipe%type)
+RETURNS DECIMAL AS $$ 
+DECLARE 
+
+    total_kda DECIMAL;
+    
+    v_id_joueur Joueurs.id_joueur%type;
+    v_curseur CURSOR FOR SELECT id_joueur from Jouer_Dans WHERE id_equipe = v_id_equipe;
+
+BEGIN 
+    total_kda:=0;
+    OPEN v_curseur;
+    LOOP 
+        FETCH v_curseur INTO v_id_joueur;
+        EXIT WHEN NOT FOUND;
+        -- raise notice 'Kda du joueur : %',calcul_kda_joueur(v_id_joueur);
+        total_kda = total_kda + calcul_kda_joueur(v_id_joueur);
+    END LOOP;
+    total_kda = total_kda/5;
+    CLOSE v_curseur;
+    RETURN total_kda;
+END;
+$$ language plpgsql;
+
+CREATE OR REPLACE FUNCTION calcul_duree_moyenne_matchs_equipe(v_id_equipe Equipes.id_equipe%type)
+RETURNS TIME AS $$
+BEGIN
+    RETURN AVG(duree_match) FROM Matchs WHERE id_equipe_1 = v_id_equipe OR id_equipe_2 = v_id_equipe;
+END;
+$$ language plpgsql;
+
+CREATE OR REPLACE FUNCTION calcul_winrate_equipe(v_id_equipe Equipes.id_equipe%type)
+RETURNS DECIMAL as $$ 
+DECLARE
+
+    total_wins INTEGER;
+    total_matchs INTEGER;
+
+BEGIN
+
+    IF (v_id_equipe IN (SELECT id_equipe FROM Equipes)) THEN
+        SELECT COUNT(vainqueur) INTO total_wins FROM Matchs WHERE vainqueur = v_id_equipe;
+        SELECT COUNT(id_match) INTO total_matchs FROM Matchs WHERE id_equipe_1 = v_id_equipe OR id_equipe_2 = v_id_equipe;
+        RETURN ROUND(((total_wins::DECIMAL) / total_matchs::DECIMAL),2)*100;
+    ELSE
+        raise exception 'L equipe passé en paramètre n existe pas';
+    END IF;
+END;
+$$ language plpgsql;
+
+
+CREATE OR REPLACE FUNCTION gestion_classement() RETURNS TRIGGER AS $$
+DECLARE
+    v_id_equipe_gagnante classement_LFL.id_equipe%type;
+    v_id_equipe_perdante classement_LFL.id_equipe%type;
+
+    nb_win_existantes classement_LFL.nb_lose%type;
+    nb_loses_existantes classement_LFL.nb_win%type;
+
+BEGIN
+
+    nb_win_existantes :=0;
+    nb_loses_existantes:=0;
+
+    SELECT id_equipe INTO v_id_equipe_gagnante FROM classement_LFL WHERE id_equipe = new.vainqueur;
+    SELECT id_equipe INTO v_id_equipe_perdante FROM classement_LFL WHERE id_equipe = new.perdant;
+
+    IF (v_id_equipe_gagnante IS NULL) THEN 
+        INSERT INTO classement_LFL values(new.vainqueur,1,0); -- Si il n'existe pas encore alors il a que  le match qu'il vient de jouer
+    ELSE  -- On s'occupe de modifier l'existant sinon  
+        -- On récupère les données existantes et on update le classement
+        SELECT nb_win INTO nb_win_existantes FROM classement_LFL WHERE id_equipe = v_id_equipe_gagnante;
+        nb_win_existantes = nb_win_existantes + 1;
+        UPDATE classement_LFL SET nb_win = nb_win_existantes WHERE id_equipe = v_id_equipe_gagnante;
+    END IF;
+
+
+    IF (v_id_equipe_perdante IS NULL) THEN 
+        INSERT INTO classement_LFL values(new.perdant,0,1); -- Si il n'existe pas encore alors il a que  le match qu'il vient de jouer
+    ELSE  -- On s'occupe de modifier l'existant sinon  
+        -- On récupère les données existantes et on update le classement
+        SELECT nb_lose INTO nb_loses_existantes FROM classement_LFL WHERE id_equipe = v_id_equipe_perdante;
+        nb_loses_existantes = nb_loses_existantes + 1;
+        UPDATE classement_LFL SET nb_lose = nb_loses_existantes WHERE id_equipe = v_id_equipe_perdante;
+    END IF;
+    RETURN NEW;
+END;
+$$ language plpgsql;
+
+CREATE TRIGGER classement_equipe
+AFTER INSERT ON Matchs -- Utilisation du mot insert
+FOR EACH ROW 
+EXECUTE PROCEDURE gestion_classement();
+
+CREATE OR REPLACE FUNCTION verif_insert_matchs() RETURNS TRIGGER AS $$
+BEGIN
+    IF ((new.id_equipe_1 = new.vainqueur OR new.id_equipe_1 = new.perdant)
+    AND  (new.id_equipe_2 = new.vainqueur OR new.id_equipe_2 = new.perdant))
+    THEN
+        RETURN NEW;
+    ELSE
+        RAISE NOTICE 'Votre valeur doit être cohérente , une équipe qui ne joue pas ne peut pas gagner ou perdre';
+    END IF;
+END;
+$$ language plpgsql;
+
+CREATE TRIGGER verification_matchs
+BEFORE INSERT ON Matchs -- Utilisation du mot before
+FOR EACH ROW 
+EXECUTE PROCEDURE verif_insert_matchs();
+
+CREATE OR REPLACE FUNCTION gestion_stats_equipes()
+RETURNS TRIGGER AS $$
+DECLARE
+    v_winrate statistique_LFL.winrate%type;
+    v_id_equipe Equipes.id_equipe%type;
+    v_id_equipe_bdd Equipes.id_equipe%type;
+
+BEGIN
+    SELECT id_equipe INTO v_id_equipe_bdd FROM Jouer_dans 
+                    WHERE id_joueur = new.id_joueur; 
+    SELECT id_equipe INTO v_id_equipe FROM statistique_LFL 
+                    WHERE id_equipe = v_id_equipe_bdd;
+    IF (v_id_equipe IS NULL) THEN 
+        INSERT INTO statistique_LFL values(
+            v_id_equipe_bdd,
+            calcul_winrate_equipe(v_id_equipe_bdd),
+            calcul_kda_equipe(v_id_equipe_bdd),
+            calcul_duree_moyenne_matchs_equipe(v_id_equipe_bdd));
+    ELSE
+        UPDATE statistique_LFL SET
+            winrate = calcul_winrate_equipe(v_id_equipe),
+            kda_equipe = calcul_kda_equipe(v_id_equipe),
+            moyenne_duree_game = calcul_duree_moyenne_matchs_equipe(v_id_equipe)
+        WHERE id_equipe = v_id_equipe;
+    END IF;
+    RETURN new;
+END;
+$$ language plpgsql;
+
+CREATE TRIGGER trigger_gestion_stats_equipes
+AFTER INSERT OR UPDATE ON Historique_Matchs
+FOR EACH ROW 
+EXECUTE PROCEDURE gestion_stats_equipes();
+
+
 INSERT INTO nationalites (libelle_nationalite) VALUES
 ('Afghane'),
 ('Albanaise'),
@@ -207,13 +463,6 @@ INSERT INTO nationalites (libelle_nationalite) VALUES
 ('Zimbabwéenne');
 
 
-CREATE TABLE Coachs(
-    id_coach SERIAL PRIMARY KEY,
-    pseudo_coach VARCHAR(50) NOT NULL,
-    nom_coach VARCHAR(50) NOT NULL,
-    prenom_coach VARCHAR(50) NOT NULL,
-    id_nationalite INTEGER NOT NULL REFERENCES Nationalites(id_nationalite)
-);
 
 INSERT INTO Coachs(pseudo_coach, nom_coach, prenom_coach,  id_nationalite) VALUES
 ('Zeph', 'VIGUIE', 'Quentin', 64),
@@ -228,13 +477,6 @@ INSERT INTO Coachs(pseudo_coach, nom_coach, prenom_coach,  id_nationalite) VALUE
 ('Aries', 'BIGANZOLI', 'Grégoire', 64);
 
 
-CREATE TABLE Equipes(
-    id_equipe SERIAL PRIMARY KEY,
-    nom_equipe VARCHAR(50) NOT NULL,
-    date_creation DATE NOT NULL,
-    id_coach INTEGER NOT NULL REFERENCES Coachs(id_coach)
-);
-
 INSERT INTO  Equipes(nom_equipe, date_creation, id_coach) VALUES
 ('LDLC OL', '14-11-2014', 1),
 ('BDS ACADEMY','01-05-2019', 2),
@@ -248,16 +490,6 @@ INSERT INTO  Equipes(nom_equipe, date_creation, id_coach) VALUES
 ('TEAM OPLON','23-02-2018', 10);
 
 
-CREATE TABLE Matchs(
-    id_match SERIAL PRIMARY KEY,
-    id_equipe_1  INTEGER NOT NULL REFERENCES Equipes(id_equipe),
-    id_equipe_2  INTEGER NOT NULL REFERENCES Equipes(id_equipe),
-    date_match DATE NOT NULL,
-    duree_match TIME NOT NULL,
-    vainqueur INTEGER NOT NULL,
-    perdant INTEGER NOT NULL,
-    num_semaine INTEGER NOT NULL
-);
 
 INSERT INTO Matchs(id_equipe_1,id_equipe_2,date_match,duree_match,vainqueur,perdant,num_semaine) VALUES
 (2, 1, '01-06-2022', '00:32:15', 1 , 2, 1),
@@ -291,10 +523,6 @@ INSERT INTO Matchs(id_equipe_1,id_equipe_2,date_match,duree_match,vainqueur,perd
 (8, 2, '16-06-2022', '00:37:56', 8, 2, 3),
 (10, 9, '16-06-2022', '00:40:24', 10, 9, 3);
 
-CREATE TABLE Roles(
-    id_role SERIAL PRIMARY KEY,
-    nom_role VARCHAR(50)
-);
 
 INSERT INTO ROLES (nom_role) values 
 ('JUNGLER'), 
@@ -302,15 +530,6 @@ INSERT INTO ROLES (nom_role) values
 ('SUPPORT'), 
 ('MIDLANER'), 
 ('TOPLANER'); 
-
-CREATE TABLE Joueurs(
-    id_joueur SERIAL PRIMARY KEY,
-    pseudo VARCHAR(50) NOT NULL,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    date_naissance DATE,
-    id_nationalite INTEGER NOT NULL REFERENCES Nationalites(id_nationalite)
-);
 
 INSERT INTO Joueurs(pseudo, nom, prenom , date_naissance , id_nationalite) VALUES 
 ('Ragner', 'ASLAN', 'Onurcan', '19-12-2000', 184),
@@ -364,12 +583,6 @@ INSERT INTO Joueurs(pseudo, nom, prenom , date_naissance , id_nationalite) VALUE
 ('Bung','GRAMM','Jacok','31-10-1999', 11),
 ('Twiitz','RICHIE GARCIA SPATSIG','Elton',NULL,173);
 
-CREATE TABLE Champions(
-    id_champion SERIAL PRIMARY KEY,
-    nom_champion VARCHAR(50),
-    id_role_1 INTEGER NOT NULL REFERENCES Roles(id_role),
-    id_role_2 INTEGER REFERENCES Roles(id_role)
-);
 
 INSERT INTO CHAMPIONS(nom_champion,id_role_1,id_role_2) VALUES
 ('Aatrox',5,NULL),
@@ -536,14 +749,6 @@ INSERT INTO CHAMPIONS(nom_champion,id_role_1,id_role_2) VALUES
 ('Zyra',3,NULL);
 
 
-CREATE TABLE Jouer_dans(
-    id_joueur INTEGER NOT NULL REFERENCES Joueurs(id_joueur),
-    id_role INTEGER NOT NULL REFERENCES Roles(id_role),
-    id_equipe INTEGER NOT NULL REFERENCES Equipes(id_equipe),
-    debut_contrat DATE NOT NULL,
-    fin_contrat DATE
-);
-
 INSERT INTO Jouer_Dans(id_joueur,id_role,id_equipe,debut_contrat,fin_contrat) VALUES
 (1,5,1,'01-12-2021','01-11-2022'),
 (2,1,1,'01-12-2021','01-11-2022'),
@@ -595,19 +800,6 @@ INSERT INTO Jouer_Dans(id_joueur,id_role,id_equipe,debut_contrat,fin_contrat) VA
 (48,4,10,'01-12-2021',NULL),
 (49,2,10,'01-07-2022','01-11-2022'),
 (50,3,10,'01-05-2022',NULL);
-
-
-CREATE TABLE Historique_Matchs(
-    id_historique_match SERIAL PRIMARY KEY,
-    id_match INTEGER NOT NULL REFERENCES Matchs(id_match),
-    id_joueur INTEGER NOT NULL REFERENCES Joueurs(id_joueur),
-    id_champion_choisi INTEGER NOT NULL REFERENCES Champions(id_champion),
-    id_champion_banni INTEGER NOT NULL REFERENCES Champions(id_champion),
-    kills_joueur INTEGER NOT NULL,
-    mort_joueur INTEGER NOT NULL,
-    assists_joueur INTEGER NOT NULL,
-    total_creeps_tues INTEGER NOT NULL
-);
 
 INSERT INTO Historique_Matchs(
     id_match,
