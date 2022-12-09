@@ -2,12 +2,9 @@
 CREATE OR REPLACE FUNCTION calcul_kda_equipe(v_id_equipe Equipes.id_equipe%type)
 RETURNS DECIMAL AS $$ 
 DECLARE 
-
     total_kda DECIMAL;
-    
     v_id_joueur Joueurs.id_joueur%type;
     v_curseur CURSOR FOR SELECT id_joueur from Jouer_Dans WHERE id_equipe = v_id_equipe;
-
 BEGIN 
     total_kda:=0;
     OPEN v_curseur;
