@@ -25,11 +25,13 @@ DECLARE
     v_id_equipe Equipes.id_equipe%type;
 BEGIN
     SELECT id_equipe INTO v_id_equipe FROM Jouer_Dans WHERE id_joueur = v_id_joueur;
-    IF (id_equipe IS NOT NULL) THEN
+    IF (v_id_equipe IS NOT NULL) THEN
         RETURN calcul_duree_moyenne_matchs_equipe(v_id_equipe);
     ELSE
         raise exception 'Votre joueur ne fait partie d aucune equipe';
     END IF;
 END;
 $$ language plpgsql;
+
+
 
