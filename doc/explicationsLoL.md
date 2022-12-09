@@ -16,23 +16,23 @@ La façon de gagner une partie se fait tout au long de la partie en prenant l'av
 Une partie contient 5 rôles distincts comme TopLaner (celui qui va jouer en haut de la carte), Jungler (celui qui va se balader sur la carte pour apporter de l'aide à ses alliés ou réaliser les objectifs), MidLaner (celui qui va jouer au milieu de la carte), AD Carry (celui qui va jouer en bas de la carte) et enfin Support (celui qui va accompagner l'AD Carry dans ses déplacements).
 Il y a donc des champions favorables à aller sur certaines lanes.
 
--- Rôle : Toplaner <img src="../img/top.png">--
+-- Rôle : Toplaner <img src="../img/top.png" width="100">--
 
 Le Toplaner est le rôle où le joueur se trouve sur le haut de la carte
 
--- Rôle : Jungler <img src="../img/Jungle.png">--
+-- Rôle : Jungler <img src="../img/Jungle.png" width="100">--
 
 Le jungler est le rôle va se déplacer sur toute la carte
 
--- Rôle : Midlaner <img src="../img/mid.png">--
+-- Rôle : Midlaner <img src="../img/mid.png" width="100">--
 
 Le Midlaner est le rôle où le joueur se trouve sur le milieu de la carte
 
--- Rôle : AD Carry <img src="../img/ADC.png">--
+-- Rôle : AD Carry <img src="../img/ADC.png" width="100">--
 
 L'AD Carry est le rôle où le joueur se trouve en bas de la carte
 
--- Rôle : Support <img src="../img/support.png">--
+-- Rôle : Support <img src="../img/support.png" width="100">--
 
 Le Support est le rôle où le joueur va accompagner l'AD Carry dans ses déplacements et le supporter
 
@@ -50,18 +50,21 @@ La Draft est un moment cruciale avant le match, car elle permet de choisir les c
 Les objectifs sont des atouts importants et apparaissent au fur et à mesure de la partie comme :
 
 Les dragons qui donnent des bonus permanents à l'équipe lorsqu'ils sont tués par celle-ci, ils apparaissent toutes les 5 minutes et il en existe 7, infernal, nuage, océan, chimique, hextech, montagne, ancestral(qui apparait lorsque 4 dragons ont été tués) qui ont tous des bonus différents.
-<img src="../img/dragon.png">
+
+<img src="../img/dragon.png" width="400">
 
 Ensuite le hérault de la faille, qui se trouve à l'opposé du dragon, et qui apparait la première fois à 8 minutes et une deuxième fois 6 minutes après qu'il soit tué. Le hérault de la faille ne peut apparaître après 20 minutes. L'équipe qui tue le hérault pourra pendant un court laps de temps détruire plus rapidement les batiments ennemi.
-<img src="../img/herault.png">
+
+<img src="../img/herault.png" width="400">
 
 Enfin, à 20 minutes puis 6 minutes après être tués, le baron nashor apparaît au même endroit que le hérault de la faille, celui ci donne des bonus non-permanent à l'équipe qui le tue, ces bonus font effets pendant 3 minutes et permettent de détruire plus rapidement les batiments ennemi.
-<img src="../img/nash.png">
+
+<img src="../img/nash.png" width="400">
 
 
-# **-- L'Or <img src="../img/gold.png">--**
+# **-- L'Or <img src="../img/gold.png" width="100">--**
 
-L'Or est une ressource fondamental dans League Of Legends car cette ressource permet d'acheter des objets, qui donnent des statistiques bonus aux champions sur lesquels les objets sont équipés. Les objets sont essentiels car ils permettent de prendre un avantage sur son adversaire. Donc pour prendre l'avantage, il faut plus d'or que l'adversaire. Comment gagner cet or ? Il y a plusieurs façons, la première est de tuer les sbires ennemis, ces sbires donnent un montant d'or différent en fonction de leur type (Guerrier, Mage ou Canon) <img src="../img/canon.png">
+L'Or est une ressource fondamental dans League Of Legends car cette ressource permet d'acheter des objets, qui donnent des statistiques bonus aux champions sur lesquels les objets sont équipés. Les objets sont essentiels car ils permettent de prendre un avantage sur son adversaire. Donc pour prendre l'avantage, il faut plus d'or que l'adversaire. Comment gagner cet or ? Il y a plusieurs façons, la première est de tuer les sbires ennemis, ces sbires donnent un montant d'or différent en fonction de leur type (Guerrier, Mage ou Canon) <img src="../img/canon.png" width="100">
 Une autre source d'or, en tuant les champions ennemis et c'est à ce moment là qu'intervient le fait de combat entre chaque joueur pour prendre un avantage dans la partie.
 La dernière source d'or et qui est exploité le plus par le jungler, sont les monstres dans la jungle, chaque camps donnent une centaine d'or
 
