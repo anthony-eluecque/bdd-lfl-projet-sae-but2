@@ -16,23 +16,23 @@ La façon de gagner une partie se fait tout au long de la partie en prenant l'av
 Une partie contient 5 rôles distincts comme TopLaner (celui qui va jouer en haut de la carte), Jungler (celui qui va se balader sur la carte pour apporter de l'aide à ses alliés ou réaliser les objectifs), MidLaner (celui qui va jouer au milieu de la carte), AD Carry (celui qui va jouer en bas de la carte) et enfin Support (celui qui va accompagner l'AD Carry dans ses déplacements).
 Il y a donc des champions favorables à aller sur certaines lanes.
 
--- Rôle : Toplaner --
+-- Rôle : Toplaner <img src="../img/top.png">--
 
 Le Toplaner est le rôle où le joueur se trouve sur le haut de la carte
 
--- Rôle : Jungler --
+-- Rôle : Jungler <img src="../img/Jungle.png">--
 
 Le jungler est le rôle va se déplacer sur toute la carte
 
--- Rôle : Midlaner --
+-- Rôle : Midlaner <img src="../img/mid.png">--
 
 Le Midlaner est le rôle où le joueur se trouve sur le milieu de la carte
 
--- Rôle : AD Carry --
+-- Rôle : AD Carry <img src="../img/ADC.png">--
 
 L'AD Carry est le rôle où le joueur se trouve en bas de la carte
 
--- Rôle : Support --
+-- Rôle : Support <img src="../img/support.png">--
 
 Le Support est le rôle où le joueur va accompagner l'AD Carry dans ses déplacements et le supporter
 

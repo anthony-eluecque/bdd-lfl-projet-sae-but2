@@ -18,11 +18,11 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
         <tr>
         <td>Equipe</td>
             <td>Coach</td>
-            <td>Toplaner</td>
-            <td>Jungler</td>
-            <td>Midlaner</td>
-            <td>AD Carry</td>
-            <td>Support</td>
+            <td>Toplaner<img src="../img/top.png"></td>
+            <td>Jungler<img src="../img/Jungle.png"></td>
+            <td>Midlaner<img src="../img/mid.png"></td>
+            <td>AD Carry<img src="../img/ADC.png"></td>
+            <td>Support<img src="../img/support.png"></td>
         </tr>
         <tr>
             <td>LDLC OL<img src="../img/LDLCOL.png"></td>        
@@ -114,8 +114,7 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
             <td>Twiitz</td>
             <td>Aries</td>
         </tr>
-        
-    </tbody>
+        </tbody>
 </table>
 
 
