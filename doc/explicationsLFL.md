@@ -9,25 +9,115 @@ Fort de son succès en France avec en moyenne près de 40 000 spectateurs sur l'
 
 Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs et 1 coach.
 
-LDLC OL est composé de Ragner / Yike / Eika / Exakick / Doss et le coach Zeph
+<table>
+    <thead>
+        <tr>
+            <th colspan="18">LFL Summer Slipt 2022
+    </thead>
+    <tbody>
+        <tr>
+        <td>Equipe</td>
+            <td>Coach</td>
+            <td>Toplaner</td>
+            <td>Jungler</td>
+            <td>Midlaner</td>
+            <td>AD Carry</td>
+            <td>Support</td>
+        </tr>
+        <tr>
+            <td>LDLC OL<img src="../img/LDLCOL.png"></td>        
+            <td>Ragner</td>
+            <td>Yike</td>
+            <td>Eika</td>
+            <td>Exakick</td>
+            <td>Doss</td>
+            <td>Zeph</td>
+        </tr>
+        <tr>
+            <td>BDS Academy<img src="../img/BDSA.png"></td>        
+            <td>Adam</td>
+            <td>Sheo</td>
+            <td>Reeker</td>
+            <td>Crownie</td>
+            <td>Erdote</td>
+            <td>GoToOne</td>
+        </tr>
+        <tr>
+            <td>Karmine Corp<img src="../img/KC.png"></td>          
+            <td>Cabochard</td>
+            <td>113</td>
+            <td>Saken</td>
+            <td>Rekkles</td>
+            <td>Hantera</td>
+            <td>Striker</td>
+        </tr>
+        <tr>
+            <td>Vitality.Bee<img src="../img/VitaBee.png"></td>
+            <td>Szygenda</td>
+            <td>Skeanz</td>
+            <td>Diplex</td>
+            <td>Jeskla</td>
+            <td>Jactroll</td>
+            <td>Realistik</td>
+        </tr>
+        <tr>
+            <td>Misfits Premier<img src="../img/mp.png"></td>          
+            <td>Kackos</td>
+            <td>Shlatan</td>
+            <td>Czajek</td>
+            <td>Woolite</td>
+            <td>Vander</td>
+            <td>Delord</td>
+        </tr>
+        <tr>
+            <td>Team Go<img src="../img/GO.png"></td>       
+            <td>NuQ</td>
+            <td>Karim KT</td>
+            <td>Ronaldo</td>
+            <td>Smiley</td>
+            <td>Veignorem</td>
+            <td>Jesiz</td>
+        </tr>
+        <tr>
+            <td>Solary<img src="../img/Solary.png"></td>         
+            <td>Kio</td>
+            <td>Djoko</td>
+            <td>Scarlet</td>
+            <td>Asza</td>
+            <td>Steeelback</td> 
+            <td>Jon</td>
+        </tr>
+        <tr>
+            <td>Gameward<img src="../img/GameWard.png"></td>    
+            <td>Melonik</td>
+            <td>Akabane</td>
+            <td>Czekolad</td>
+            <td>Innaxe</td>
+            <td>Kamilius</td>
+            <td>Malau</td>
+        </tr>
+        <tr>
+            <td>Mirage Elyandra<img src="../img/ME.png"></td>
+            <td>Badlulu</td>
+            <td>Memento</td>
+            <td>RangJun</td>
+            <td>CodySun</td>
+            <td>Raxxo</td>
+            <td>Hellombre</td>
+        </tr>
+        <tr>
+            <td>Team Oplon<img src="../img/oplon.png"></td>
+            <td>Darlik</td>
+            <td>Shernfire</td>
+            <td>Peng</td>
+            <td>Bung</td>
+            <td>Twiitz</td>
+            <td>Aries</td>
+        </tr>
+        
+    </tbody>
+</table>
 
-BDS Academy Adam / Sheo / Reeker / Crownie / Erdote et le coach GoToOne
-
-Karmine Corp est composé de Cabochard / 113 / Saken / Rekkles / Hantera et le coach Striker
-
-Vitality.Bee est composé de Szygenda / Skeanz / Diplex / Jeskla / Jactroll et le coach Realistik
-
-Misfits Premier est composé de Kackos / Shlatan / Czajek / Woolite / Vander et le coach Delord
-
-Team Go est composé de NuQ / Karim KT / Ronaldo / Smiley / Veignorem et le coach Jesiz
-
-Solary est composé de Kio / Djoko / Scarlet / Asza / Steeelback et le coach Jon
-
-Gameward est composé de Malonik / Akabane / Czekolad / Innaxe / Kamilius et le coach Malau
-
-Mirage Elyandra est composé de Badlulu / Memento / RangJun / CodySun / Raxxo et le coach Hellombre
-
-Team Oplon est composé de Darlik / Shernfire / Peng / Bung / Twiitz et le coach Aries
 
 -- Déroulement du championnat --
 
