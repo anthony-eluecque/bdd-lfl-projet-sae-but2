@@ -64,7 +64,7 @@ Enfin, à 20 minutes puis 6 minutes après être tués, le baron nashor apparaî
 
 # **-- L'Or <img src="../img/gold.png" width="100">--**
 
-L'Or est une ressource fondamental dans League Of Legends car cette ressource permet d'acheter des objets, qui donnent des statistiques bonus aux champions sur lesquels les objets sont équipés. Les objets sont essentiels car ils permettent de prendre un avantage sur son adversaire. Donc pour prendre l'avantage, il faut plus d'or que l'adversaire. Comment gagner cet or ? Il y a plusieurs façons, la première est de tuer les sbires ennemis, ces sbires donnent un montant d'or différent en fonction de leur type (Guerrier, Mage ou Canon) <img src="../img/canon.png" width="100">
+L'Or est une ressource fondamental dans League Of Legends car cette ressource permet d'acheter des objets, qui donnent des statistiques bonus aux champions sur lesquels les objets sont équipés. Les objets sont essentiels car ils permettent de prendre un avantage sur son adversaire. Donc pour prendre l'avantage, il faut plus d'or que l'adversaire. Comment gagner cet or ? Il y a plusieurs façons, la première est de tuer les sbires ennemis, ces sbires donnent un montant d'or différent en fonction de leur type (Guerrier, Mage ou Canon) <img src="../img/canon.png" width="50">
 Une autre source d'or, en tuant les champions ennemis et c'est à ce moment là qu'intervient le fait de combat entre chaque joueur pour prendre un avantage dans la partie.
 La dernière source d'or et qui est exploité le plus par le jungler, sont les monstres dans la jungle, chaque camps donnent une centaine d'or
 
