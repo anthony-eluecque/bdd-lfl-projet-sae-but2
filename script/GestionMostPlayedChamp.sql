@@ -80,16 +80,10 @@ BEGIN
 END;
 $$ language plpgsql;
 
-
-
-
-SELECT id_champion_choisi,COUNT(id_champion_choisi) FROM Historique_Matchs 
-            GROUP BY id_champion_choisi,id_joueur 
-            HAVING id_joueur = 1 
-            ORDER BY COUNT(id_champion_choisi) DESC LIMIT 3;
-
-
-
+-- SELECT id_champion_choisi,COUNT(id_champion_choisi) FROM Historique_Matchs 
+--             GROUP BY id_champion_choisi,id_joueur 
+--             HAVING id_joueur = 1 
+--             ORDER BY COUNT(id_champion_choisi) DESC LIMIT 3;
 
 CREATE TRIGGER trigger_gestion_champ_joueur
 AFTER INSERT ON Historique_Matchs
