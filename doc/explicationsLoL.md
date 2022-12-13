@@ -1,9 +1,14 @@
--- Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric --
+> Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
+
+# **-- Explications --**
+
+Vous trouverez ici l'explication presque complète du déroulement d'une partie de League Of Legends sans expliquer des détails inutiles à la compréhension du jeu pour un débutant qui cherche seulement à regarder une scène compétitive telle que la ligue Française
 
 # **-- La Carte --**
 
-
 <img src="../img/carte_lol.png">
+
+Une équipe apparait en bas à gauche et une autre équipe à l'opposé en haut à droite
 
 
 # **-- Gagner Une Partie --**
@@ -18,28 +23,31 @@ Il y a donc des champions favorables à aller sur certaines lanes.
 
 -- Rôle : Toplaner <img src="../img/top.png" width="100">--
 
-Le Toplaner est le rôle où le joueur se trouve sur le haut de la carte
+Le Toplaner est le rôle où le joueur se trouve sur le haut de la carte. Les champions les plus joués seront des Combattants ou Tanks.
 
 -- Rôle : Jungler <img src="../img/Jungle.png" width="100">--
 
-Le jungler est le rôle va se déplacer sur toute la carte
+Le jungler est le rôle va se déplacer sur toute la carte. Les champions les plus joués seront des Assassins ou Combattants.
 
 -- Rôle : Midlaner <img src="../img/mid.png" width="100">--
 
-Le Midlaner est le rôle où le joueur se trouve sur le milieu de la carte
+Le Midlaner est le rôle où le joueur se trouve sur le milieu de la carte. Les champions les plus joués seront des Mages ou Assassins.
 
 -- Rôle : AD Carry <img src="../img/ADC.png" width="100">--
 
-L'AD Carry est le rôle où le joueur se trouve en bas de la carte
+L'AD Carry est le rôle où le joueur se trouve en bas de la carte. Les champions les plus joués seront des Tireurs.
 
 -- Rôle : Support <img src="../img/support.png" width="100">--
 
-Le Support est le rôle où le joueur va accompagner l'AD Carry dans ses déplacements et le supporter
+Le Support est le rôle où le joueur va accompagner l'AD Carry dans ses déplacements et le supporter. Les champions les plus joués seront des Supports ou Tanks.
 
 # **-- Les Champions --**
 
 Pour jouer une partie de League Of Legends, il faut tout d'abord choisir un champion, donc chaque joueur choisi 1 champion durant la draft.
-Les Champions ont tous un ou plusieurs rôles spécifiques, et sont choisi en fonction d'une stratégie et en fonction des forces et faiblesses de chaque champion
+Les Champions ont tous un ou plusieurs rôles spécifiques, et sont choisi en fonction d'une stratégie et en fonction des forces et faiblesses de chaque champion.
+
+Il existe 161 champions à ce jour, il y a donc une grande diversité d'attaques et donc de stratégie. Chaque champions possède 4 attaques et un passif (sauf certains champions qui ont plus ou moins d'attaques), il a donc une façon de jouer différentes pour chaque champion 
+Chaque champion possède un rôle mais aussi une caractérisation, il en existe 6, Assassins, Combattants, Mages, Tireurs, Supports, Tanks et donc les champions sont joués sur une voie qui ont été développé au dessus dans chacun des rôles.
 
 # **-- La Draft --**
 
@@ -64,16 +72,23 @@ Enfin, à 20 minutes puis 6 minutes après être tués, le baron nashor apparaî
 
 # **-- L'Or <img src="../img/gold.png" width="100">--**
 
-L'Or est une ressource fondamental dans League Of Legends car cette ressource permet d'acheter des objets, qui donnent des statistiques bonus aux champions sur lesquels les objets sont équipés. Les objets sont essentiels car ils permettent de prendre un avantage sur son adversaire. Donc pour prendre l'avantage, il faut plus d'or que l'adversaire. Comment gagner cet or ? Il y a plusieurs façons, la première est de tuer les sbires ennemis, ces sbires donnent un montant d'or différent en fonction de leur type (Guerrier, Mage ou Canon) <img src="../img/canon.png" width="50">
+L'Or est une ressource fondamental dans League Of Legends car cette ressource permet d'acheter des objets, qui donnent des statistiques bonus aux champions sur lesquels les objets sont équipés. Les objets sont essentiels car ils permettent de prendre un avantage sur son adversaire. Donc pour prendre l'avantage, il faut plus d'or que l'adversaire. Comment gagner cet or ? Il y a plusieurs façons, la première est de tuer les sbires ennemis, ces sbires donnent un montant d'or différent en fonction de leur type (Guerrier, Mage ou Canon) 
 Une autre source d'or, en tuant les champions ennemis et c'est à ce moment là qu'intervient le fait de combat entre chaque joueur pour prendre un avantage dans la partie.
 La dernière source d'or et qui est exploité le plus par le jungler, sont les monstres dans la jungle, chaque camps donnent une centaine d'or
+
+<img src="../img/canon.png" width="50">
+<-- Un sbire de type canon
+
 
 # **-- L'expérience --**
 
 L'expérience des champions dans la partie découle directement de l'or car en tuant des sbires, des champions, des monstres de la jungle de l'expérience est gagné. L'expérience permet d'augmenter le niveau de son champion avec un maximum de 18 et à chaque nouveau niveau, le champion gagne des statistiques (ces améliorations sont différentes entre tous les champions) et le joueur peut choisir une attaque, parmis les 4, du champions à améliorer.
 
+# **-- Conclusion --**
 
-
+Pour conclure que League Of Legends est un jeu très complet, où son contenu augmente de jour en jour, il faut donc vraiment s'y interésser pour comprendre toute les spécifités de chaque champion, de chaque objet, de chaque statistique...
+Il s'agit avant tout d'un jeu en équipe avec une stratégie qui change de match en match, il est impossible de regarder 2 fois la même partie, il y aura toujours des différences.
+League Of Legends est un jeu joué par des millions de joueur qui comporte une scène compétitive dans chaque région du monde. Il s'agit d'un jeu que énormément de personnes, qui s'intéresse un minimum aux jeux compétitif, ont déjà essayé car League Of Legends a maintenant 12 ans.
 
 
 
