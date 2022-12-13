@@ -96,6 +96,13 @@ CREATE TABLE PlayedChamp(
     id_champ3 INTEGER NOT NULL
 );
 
+CREATE TABLE classement_week_lfl(
+    id_equipe INTEGER,
+    nb_win INTEGER,
+    nb_lose INTEGER,
+    week INTEGER
+);
+
 CREATE OR REPLACE FUNCTION calcul_kda_joueur(v_id_joueur Joueurs.id_joueur%type)
 RETURNS DECIMAL AS $$
 DECLARE
@@ -175,19 +182,21 @@ BEGIN
 END;
 $$ language plpgsql;
 
-
 CREATE OR REPLACE FUNCTION gestion_classement() RETURNS TRIGGER AS $$
 DECLARE
     v_id_equipe_gagnante classement_LFL.id_equipe%type;
     v_id_equipe_perdante classement_LFL.id_equipe%type;
 
-    nb_win_existantes classement_LFL.nb_lose%type;
-    nb_loses_existantes classement_LFL.nb_win%type;
+    nb_win_existantes classement_LFL.nb_win%type;
+    nb_loses_existantes classement_LFL.nb_lose%type;
 
+    nb_week_win INTEGER;
+    nb_week_lose INTEGER;
 BEGIN
-
     nb_win_existantes :=0;
     nb_loses_existantes:=0;
+    nb_week_lose :=0;
+    nb_week_win := 0;
 
     SELECT id_equipe INTO v_id_equipe_gagnante FROM classement_LFL WHERE id_equipe = new.vainqueur;
     SELECT id_equipe INTO v_id_equipe_perdante FROM classement_LFL WHERE id_equipe = new.perdant;
@@ -201,7 +210,6 @@ BEGIN
         UPDATE classement_LFL SET nb_win = nb_win_existantes WHERE id_equipe = v_id_equipe_gagnante;
     END IF;
 
-
     IF (v_id_equipe_perdante IS NULL) THEN 
         INSERT INTO classement_LFL values(new.perdant,0,1); -- Si il n'existe pas encore alors il a que  le match qu'il vient de jouer
     ELSE  -- On s'occupe de modifier l'existant sinon  
@@ -210,6 +218,29 @@ BEGIN
         nb_loses_existantes = nb_loses_existantes + 1;
         UPDATE classement_LFL SET nb_lose = nb_loses_existantes WHERE id_equipe = v_id_equipe_perdante;
     END IF;
+
+
+    SELECT id_equipe INTO v_id_equipe_gagnante FROM classement_week_lfl WHERE id_equipe = new.vainqueur AND week = new.num_semaine;
+    -- raise notice '% , %' , v_id_equipe_gagnante,v_id_equipe_perdante;
+    IF (v_id_equipe_gagnante IS NULL) THEN
+        INSERT INTO classement_week_lfl values (new.vainqueur,1,0,new.num_semaine);
+    ELSE    
+        SELECT nb_win INTO nb_week_win FROM classement_week_lfl WHERE id_equipe = v_id_equipe_gagnante AND week = new.num_semaine;
+        nb_week_win = nb_week_win + 1;
+        UPDATE classement_week_lfl SET nb_win = nb_week_win WHERE id_equipe = v_id_equipe_gagnante AND week = new.num_semaine;
+    END IF;
+
+    SELECT id_equipe INTO v_id_equipe_perdante FROM classement_week_lfl WHERE id_equipe = new.perdant AND week = new.num_semaine;
+    
+    IF (v_id_equipe_perdante IS NULL) THEN
+        INSERT INTO classement_week_lfl values (new.perdant,0,1,new.num_semaine);
+    ELSE 
+        SELECT nb_lose INTO nb_week_lose FROM classement_week_lfl WHERE id_equipe = v_id_equipe_perdante AND week = new.num_semaine;
+        nb_week_lose = nb_week_lose + 1;
+        -- raise notice 'nb_lose : %',nb_week_lose;
+        UPDATE classement_week_lfl SET nb_lose = nb_week_lose WHERE id_equipe = v_id_equipe_perdante AND week = new.num_semaine;
+    END IF;
+
     RETURN NEW;
 END;
 $$ language plpgsql;
@@ -298,15 +329,15 @@ BEGIN
             IF (vid_champ_joue NOT IN (SELECT id_champ1 FROM PlayedChamp WHERE id_joueur = new.id_joueur)) THEN
                 IF (vid_champ_joue NOT IN (SELECT id_champ2 FROM PlayedChamp WHERE id_joueur = new.id_joueur)) THEN
                     IF (vid_champ_joue NOT IN (SELECT id_champ3 FROM PlayedChamp WHERE id_joueur = new.id_joueur)) THEN
-                        RAISE NOTICE 'id_champion : % , count : %',vid_champ_joue,nb_fois_champ_new_joue ;
+                        -- RAISE NOTICE 'id_champion : % , count : %',vid_champ_joue,nb_fois_champ_new_joue ;
                         -- On récup le 3ème perso le + joué
                         SELECT id_champ3 INTO vid_champ FROM PlayedChamp WHERE id_joueur = new.id_joueur;
                         SELECT COUNT(*) INTO nb_fois_joue FROM Historique_Matchs WHERE id_joueur = new.id_joueur AND id_champion_choisi = vid_champ;
 
                         -- Si le nouveau champ est + joué par ce joueur que son 3ème champion habituel alors on update
-                        raise notice 'Id3 : % , count : % , count_loop : %',vid_champ,nb_fois_joue,nb_fois_champ_new_joue;
+                        -- raise notice 'Id3 : % , count : % , count_loop : %',vid_champ,nb_fois_joue,nb_fois_champ_new_joue;
                         IF (nb_fois_champ_new_joue > nb_fois_joue) THEN 
-                            raise notice 'Cas id3';
+                            -- raise notice 'Cas id3';
                             UPDATE PlayedChamp SET id_champ3 = vid_champ_joue WHERE id_joueur = new.id_joueur;
                         -- Si le nouveau champ est + joué par ce joueur que son 2ème champion habituel alors on update
                         -- Pour ça, on a besoin de passé par une variable temporaire pour décallé de 1 les id.
@@ -314,9 +345,9 @@ BEGIN
 
                         SELECT id_champ2 INTO vid_champ FROM PlayedChamp WHERE id_joueur = new.id_joueur;
                         SELECT COUNT(*) INTO nb_fois_joue FROM Historique_Matchs WHERE id_joueur = new.id_joueur AND id_champion_choisi = vid_champ;
-                        raise notice 'Id2 : % , count : % , count_loop : %',vid_champ,nb_fois_joue,nb_fois_champ_new_joue;
+                        -- raise notice 'Id2 : % , count : % , count_loop : %',vid_champ,nb_fois_joue,nb_fois_champ_new_joue;
                         IF (nb_fois_champ_new_joue > nb_fois_joue) THEN 
-                            raise notice 'Cas id2';
+                            -- raise notice 'Cas id2';
                             SELECT id_champ2 INTO v_temp FROM PlayedChamp WHERE id_joueur = new.id_joueur;
                             
                             UPDATE PlayedChamp SET id_champ2 = vid_champ_joue WHERE id_joueur = new.id_joueur;
@@ -326,9 +357,9 @@ BEGIN
                         -- Pour ça, on a besoin de passé par 2 variables temporaires pour décallé de 1 tous les id.
                         SELECT id_champ1 INTO vid_champ FROM PlayedChamp WHERE id_joueur = new.id_joueur;
                         SELECT COUNT(*) INTO nb_fois_joue FROM Historique_Matchs WHERE id_joueur = new.id_joueur AND id_champion_choisi = vid_champ;
-                        raise notice 'Id1 : % , count : % , count_loop : %',vid_champ,nb_fois_joue,nb_fois_champ_new_joue;
+                        -- raise notice 'Id1 : % , count : % , count_loop : %',vid_champ,nb_fois_joue,nb_fois_champ_new_joue;
                         IF (nb_fois_champ_new_joue > nb_fois_joue) THEN 
-                            raise notice 'Cas id1';
+                            -- raise notice 'Cas id1';
                             SELECT id_champ1 INTO v_temp_2 FROM PlayedChamp WHERE id_joueur = new.id_joueur;
                             UPDATE PlayedChamp SET id_champ1 = vid_champ_joue WHERE id_joueur = new.id_joueur;
                             SELECT id_champ2 INTO v_temp FROM PlayedChamp WHERE id_joueur = new.id_joueur;
