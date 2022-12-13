@@ -100,7 +100,50 @@ $$ language plpgsql;
 
 
 
+CREATE OR REPLACE FUNCTION nbFoisChampPick(
+    vnom_champion champions.nom_champion %type
+)
+RETURNS integer AS $$
+DECLARE
+    compteur integer;
+    vid_champion champions.id_champion %type;
+BEGIN
+    SELECT id_champion INTO vid_champion FROM champions WHERE nom_champion LIKE vnom_champion;
+    SELECT COUNT(*) INTO compteur FROM Historique_Matchs WHERE id_champion_choisi = vid_champion;
+    RETURN compteur;
+END;
+$$ language plpgsql; 
 
 
+CREATE OR REPLACE FUNCTION calcul_winrate_champion(vnom champions.nom_champion%type)
+RETURNS DECIMAL as $$ 
+DECLARE
+    v_id_champ champions.id_champion%type;
+    total_picks INTEGER;
+    v_id_joueur Joueurs.id_joueur%type;
+    total_matchs_win INTEGER;
+    vid_vaiqueur Matchs.vainqueur%type;
 
-
+BEGIN
+    total_matchs_win := 0;
+    total_picks := 0;
+    IF (vnom IN (SELECT nom_champion FROM champions)) THEN
+        SELECT id_champion INTO v_id_champ FROM champions WHERE nom_champion = vnom;
+        total_picks := nbFoisChampPick(vnom);
+        -- On cherche à savoir le nombre de fois où il a été choisi et a gagné
+        FOR vid_vaiqueur IN SELECT vainqueur FROM Matchs
+        LOOP
+            SELECT COUNT(id_champion_choisi) INTO total_matchs_win FROM Historique_Matchs
+            WHERE id_champion_choisi = v_id_champ
+            AND id_joueur IN (SELECT j.id_joueur FROM Jouer_dans as j WHERE j.id_equipe = vid_vaiqueur);
+        END LOOP;
+        -- raise notice '====> % ,  %  , %', total_picks,total_matchs_win;
+        IF (total_picks > 0) THEN
+            RETURN ROUND(((total_matchs_win::DECIMAL) / total_picks::DECIMAL),2)*100;
+        ELSE return 0;
+        END IF;
+    ELSE
+        raise exception 'Le champion passé en paramètre n existe pas';
+    END IF;
+END;
+$$ language plpgsql;
