@@ -1,4 +1,4 @@
-# **Base de donnée LFL**
+# **Base de donnée LFL ⚔️**
 
 > Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
 

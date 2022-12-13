@@ -51,9 +51,11 @@ Pour comprendre comment se déroule le championnat de la LFL nous avons rédigé
 
 ### 1.2 L'approche Utilisé
 
-Pour réalisé ce projet nous avons utilisé plusieurs outils qui nous ont permis de travailler en groupe comme Le Live Share de Visual Studio Code, il s'agit d'une extension 
+Pour réalisé ce projet nous avons utilisé plusieurs outils qui nous ont permis de travailler en groupe comme Le Live Share de Visual Studio Code, il s'agit d'une extension qui permet de travailler en même temps sur un même fichier à la manière d'un Google Doc. Nous avons aussi utilisé Discord pour pouvoir discuter des idées en dehors des horaires de Tps et pour pouvoir échanger des fichiers. Pour pouvoir échanger des fichiers nous avons utilisé aussi GitHub.
 
 ### 1.3 Travail En Groupe
+
+Nous avons travaillé à 3, nous avons donc organisé les travaux pour que chaque membre du groupe ait un travail a effectué 
 
 ## **2 La Base De Données 📦**
 
@@ -85,16 +87,53 @@ Grâce au logiciel *Looping*, nous avons pu avoir le **Modèle logique de donné
 
 > #### 2.2.1 Création Des tables
 
-Pour créer les tables, nous avions tout d'abord définit les données dont nous aurions besoin afin de faire un classement sur la LFL Spring 2022 (les Equipes, les joueurs, les champions, ect...).
+Pour créer les tables, nous avions tout d'abord définit les données dont nous aurions besoin afin de faire un classement sur la LFL Spring 2022 (les Equipes, les Joueurs, les Champions, les Coachs, Les historiques des matchs, La nationalité, Les rôles).
 
 > #### 2.2.2 Ajout & Organisation Des Tuples
 
+Nous avons donc comme expliqué auparavant récupéré des informations sur les matchs qui se sont déjà déroulés et remplis la base de données avec ces données. Nous avons donc choisi de rentrer le nom, prenom, nationalité, date de naissance pour chaque joueur et chaque coach, le nombre de match et les statistiques de chaque joueur pour tous les matchs qu'ils ont joué, nous avons aussi rentré chaque champion du jeu avec leur rôle principal. 
+
+
 > #### 2.2.3 La Méthodologie
+
+Nous avons donc remplis la base de données avec tuples écrit à la main mais toujours en suivant une méthode très strict qui nous a permis de ne pas se perdre dans toutes ces données mais surtout pour ne pas faire d'erreur dans l'entrée de ces informations. Cette stratégie nous a permis de rentrer les tuples sans perdre de temps inutile
 
 ### 2.3 La Création Des Fonctions
 
+Nous avons donc pour optimiser cette base de données et la rendre automatique, créer plusieurs fonctions. 
+
 > #### 2.3.1 Les Fonctions Utilitaires Pour L'Utilisation De La BDD
 
+`- getNomChampion(id_champion integer) ▶️ varchar`   
+Permet de trouver le nom d'un champion à partie de son id 
+
+`- AfficherChampionsBanMatch(id_match integer) ▶️ void`  
+Permet d'afficher les 10 champions banni d'un match avec l'id du match
+
+`- AfficherChampionsChoisiMatch(id_match integer) ▶️ void`  
+Permet d'afficher les 10 champions choisi d'un match avec l'id du match
+
+`- nbFoisChampBan(nom_champion varchar) ▶️ integer`  
+Permet de trouver le nombre de fois qu'un champion a été banni à partir du nom de ce champion
+
+`- rateBanChamp(id_champion integer) ▶️ real`
+Permet d'obtenir le pourcentage que le champion a été banni sur tous les matchs déjà joués à partir de l'id de ce champion
+
+`- nbFoisChampPick(nom_champion varchar) ▶️ integer`  
+Permet de trouver le nombre de fois qu'un champion a été choisi à partir du nom de ce champion 
+
+`- calcul_winrate_champion(nom_champion varchar) ▶️ decimal`  
+Permet d'obtenir le taux de match gagné par champion à partir du nom de ce champion
+
+`- calcul_winrate_equipe(id_equipe integer) ▶️ decimal`  
+Permet d'obtenir le taux de match gagné par équipe à partir de l'id de cette équipe
+
+`- calcul_kda_equipe(id_equipe integer) ▶️ decimal`  
+Permet d'obtenir le kda par équipe à partir de l'id de cette équipe
+
+`- calcul_kda_joueur(id_joueur integer) ▶️ decimal`  
+Permet d'obtenir le kda par joueur à partir de l'id de ce joueur
+ 
 > #### 2.3.2 La Gestion automatique du classement
 
 ## **3 Le Site Web Associé a La BDD 🌐**
@@ -124,6 +163,5 @@ Pour créer les tables, nous avions tout d'abord définit les données dont nous
 > #### 5.2.1 Ajouter Un Joueur
 
 > #### 5.2.2 Supprimer Un joueur
-
 
 > #### 5.2.3 Ajouter Un Match
