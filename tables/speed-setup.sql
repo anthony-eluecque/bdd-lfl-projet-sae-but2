@@ -387,6 +387,235 @@ AFTER INSERT ON Historique_Matchs
 FOR EACH ROW
 EXECUTE PROCEDURE MostPlayedChampByPlayer();
 
+-- Crée une fonction qui retourne le nom d'un champion à partir de son id
+
+CREATE or REPLACE function getNomChampion(
+    vid_champion champions.id_champion%type
+)
+RETURNS VARCHAR AS $$
+DECLARE
+    vchamp champions.nom_champion %type;
+BEGIN
+    SELECT nom_champion INTO vchamp FROM champions 
+                WHERE id_champion = vid_champion;
+    RETURN vchamp;
+END;
+$$ language plpgsql;
+
+
+-- Crée une procédure qui affiche les noms des champions banni à partir d'un id de match
+-- Condition : utiliser la fonction d'au dessus
+
+CREATE or REPLACE function AfficherChampionsBanMatch(
+    vid_match matchs.id_match %type
+)
+RETURNS void AS $$
+DECLARE
+    vid_champion champions.id_champion %type;
+    vnom_champion champions.nom_champion %type;
+    curseur_banni cursor for SELECT id_champion_banni FROM historique_matchs WHERE id_match = vid_match;
+BEGIN
+    OPEN curseur_banni;
+    LOOP
+        FETCH curseur_banni INTO vid_champion;
+        EXIT WHEN NOT FOUND;
+        vnom_champion = getNomChampion(vid_champion);
+        RAISE NOTICE 'Le champion % a été banni de la game', vnom_champion;
+    END LOOP;
+END;
+$$ language plpgsql;
+
+
+-- Crée une procédure qui affiche les noms des champions choisis à partir d'un id de match
+-- Condition : utiliser la fonction d'au dessus
+
+CREATE OR REPLACE FUNCTION AfficherChampionsChoisisMatch(
+    vid_match matchs.id_match %type
+)
+RETURNS VOID AS $$
+DECLARE
+    vid_champion champions.id_champion %type;
+    vnom_champion champions.nom_champion %type;
+    moncurseur cursor FOR SELECT id_champion_choisi FROM Historique_Matchs WHERE id_match = vid_match;
+BEGIN
+    open moncurseur;
+    LOOP
+        FETCH moncurseur INTO vid_champion;
+        EXIT WHEN NOT FOUND;
+        vnom_champion := getNomChampion(vid_champion);
+        raise notice 'Le champion % a ete choisi.', vnom_champion;
+    END LOOP;
+    close moncurseur;
+END;
+$$ language plpgsql;
+
+
+-- Crée une fonction qui donne le nombre de fois ou un champion a été banni
+
+CREATE OR REPLACE FUNCTION nbFoisChampBan(
+    vnom_champion champions.nom_champion %type
+)
+RETURNS integer AS $$
+DECLARE
+    compteur integer;
+    vid_champion champions.id_champion %type;
+BEGIN
+    SELECT id_champion INTO vid_champion FROM champions WHERE nom_champion LIKE vnom_champion;
+    SELECT COUNT(*) INTO compteur FROM Historique_Matchs WHERE id_champion_banni = vid_champion;
+    RETURN compteur;
+END;
+$$ language plpgsql; 
+
+
+-- Crée une fonction qui donne le % ou il a été banni par rapport à la totalité des champions bannis
+-- Pour cela, il faut passer par paramètre l'id d'un champion
+-- Conditon : utiliser la fonction d'au dessus 
+ 
+CREATE OR REPLACE FUNCTION rateBanChamp(
+    vid_champion champions.id_champion %type
+)
+RETURNS real AS $$
+DECLARE
+    vtotal_banni integer;
+    vnb_ban_champ integer;
+    pourcentage real;
+BEGIN
+    SELECT COUNT(id_champion_banni) INTO vtotal_banni FROM historique_matchs;
+    vnb_ban_champ := nbFoisChampBan(vid_champion);
+    pourcentage := vnb_ban_champ / vtotal_banni * 100;
+    RETURN pourcentage;
+END;
+$$ language plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION nbFoisChampPick(
+    vnom_champion champions.nom_champion %type
+)
+RETURNS integer AS $$
+DECLARE
+    compteur integer;
+    vid_champion champions.id_champion %type;
+BEGIN
+    SELECT id_champion INTO vid_champion FROM champions WHERE nom_champion LIKE vnom_champion;
+    SELECT COUNT(*) INTO compteur FROM Historique_Matchs WHERE id_champion_choisi = vid_champion;
+    RETURN compteur;
+END;
+$$ language plpgsql; 
+
+
+CREATE OR REPLACE FUNCTION calcul_winrate_champion(vnom champions.nom_champion%type)
+RETURNS DECIMAL as $$ 
+DECLARE
+    v_id_champ champions.id_champion%type;
+    total_picks INTEGER;
+    v_id_joueur Joueurs.id_joueur%type;
+    total_matchs_win INTEGER;
+    vid_vaiqueur Matchs.vainqueur%type;
+
+BEGIN
+    total_matchs_win := 0;
+    total_picks := 0;
+    IF (vnom IN (SELECT nom_champion FROM champions)) THEN
+        SELECT id_champion INTO v_id_champ FROM champions WHERE nom_champion = vnom;
+        total_picks := nbFoisChampPick(vnom);
+        -- On cherche à savoir le nombre de fois où il a été choisi et a gagné
+        FOR vid_vaiqueur IN SELECT vainqueur FROM Matchs
+        LOOP
+            SELECT COUNT(id_champion_choisi) INTO total_matchs_win FROM Historique_Matchs
+            WHERE id_champion_choisi = v_id_champ
+            AND id_joueur IN (SELECT j.id_joueur FROM Jouer_dans as j WHERE j.id_equipe = vid_vaiqueur);
+        END LOOP;
+        -- raise notice '====> % ,  %  , %', total_picks,total_matchs_win;
+        IF (total_picks > 0) THEN
+            RETURN ROUND(((total_matchs_win::DECIMAL) / total_picks::DECIMAL),2)*100;
+        ELSE return 0;
+        END IF;
+    ELSE
+        raise exception 'Le champion passé en paramètre n existe pas';
+    END IF;
+END;
+$$ language plpgsql;
+
+
+create or replace function getNomJoueur(
+    vid_joueur Joueurs.id_joueur%type
+) RETURNS VARCHAR AS $$
+BEGIN
+    RETURN (SELECT nom FROM Joueurs where id_joueur = vid_joueur);
+END;
+$$ language plpgsql;
+
+create or replace function getPrenomJoueur(
+    vid_joueur Joueurs.id_joueur%type
+) RETURNS VARCHAR AS $$
+BEGIN 
+    RETURN (SELECT prenom FROM Joueurs where id_joueur = vid_joueur);
+END;
+$$ language plpgsql;
+
+    create or replace function get_matchs_joueur(
+        vid_joueur Joueurs.id_joueur%type
+    ) RETURNS TABLE(
+        vid_match INTEGER,
+        kda DECIMAL,
+        id_champion INTEGER
+    ) AS $$
+    DECLARE
+        var_r RECORD;
+    BEGIN 
+        FOR var_r IN (select id_match,id_champion_choisi from historique_matchs
+                        WHERE id_joueur=vid_joueur)
+        LOOP    
+            vid_match = var_r.id_match;
+            kda = calcul_kda_joueur_match(vid_joueur,var_r.id_match);
+            id_champion = var_r.id_champion_choisi;
+            return NEXT;
+        END LOOP;
+    END;
+    $$ language plpgsql;
+
+
+create or replace function meilleurs_matchs_joueur(
+    v_id_joueur Joueurs.id_joueur%type
+) RETURNS TABLE(
+    v_id_match INTEGER
+) AS $$
+DECLARE
+    var_r RECORD;
+BEGIN 
+    FOR var_r IN (
+        SELECT vid_match FROM  get_matchs_joueur(v_id_joueur)
+        ORDER BY kda DESC LIMIT 3
+        -- Je crois avoir oublié le desc
+    )
+    LOOP
+        v_id_match = var_r.vid_match;
+        return NEXT;
+    END LOOP;
+END;
+$$ language plpgsql;
+
+create or replace function get_champions_joueur(
+    v_id_joueur Joueurs.id_joueur%type
+) RETURNS TABLE(
+    champ_nom VARCHAR(50)
+) AS $$
+DECLARE
+    var_r RECORD;
+BEGIN
+    FOR var_r IN (
+        SELECT id_champion FROM get_matchs_joueur(v_id_joueur)
+        ORDER BY kda LIMIT 3
+    )
+    LOOP
+        champ_nom = getNomChampion(var_r.id_champion);
+        return NEXT;
+    END LOOP;
+END;
+$$ language plpgsql;
+
+
 INSERT INTO nationalites (libelle_nationalite) VALUES
 ('Afghane'),
 ('Albanaise'),
