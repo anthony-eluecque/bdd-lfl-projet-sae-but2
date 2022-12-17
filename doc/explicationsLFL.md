@@ -5,10 +5,10 @@
 
 # **Sommaire 📃**
 
-### 1 C'est quoi la LFL
-### 2 Participants
-### 3 Déroulement du championnat
-### 4 Déroulement des Playoffs
+- 1 C'est quoi la LFL
+- 2 Participants
+- 3 Déroulement du championnat
+- 4 Déroulement des Playoffs
 
 
 ## **1 C'est quoi la LFL ❓**
