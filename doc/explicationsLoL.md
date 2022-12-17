@@ -1,6 +1,6 @@
-<div style="text-align:center">
-<img src= "../img/lol.png" width=400>
-</div>
+<p align="center">
+    <img src= "../img/lol.png" width=400>
+</p>
 
 > Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
 
