@@ -108,13 +108,14 @@ Il y a plusieurs façons, la première est de tuer les sbires ennemis, ces sbire
 Une autre source d'or, en tuant les champions ennemis et c'est à ce moment là qu'intervient le fait de combat entre chaque joueur pour prendre un avantage dans la partie.
 La dernière source d'or et qui est exploité le plus par le jungler, sont les monstres dans la jungle, chaque camps donnent une centaine d'or
 
-**Sbires**
+
 <p align="center">
+**Sbires**
 <img src="../img/sbires.jpg" width="400">
 </p>
 
-**Monstres Jungle**
 <p align="center">
+**Monstres Jungle**
 <img src="../img/monstreJungle.jpg" width="400">
 </p>
 
