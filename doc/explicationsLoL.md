@@ -8,13 +8,13 @@ Vous trouverez ici l'explication presque complète du déroulement d'une partie 
 
 # **Sommaire 📃**
 
-#### 1 Carte
-#### 2 Gagner une partie
-#### 3 Les rôles
-#### 4 Les champions
-#### 5 La draft
-#### 6 Les Objectifs neutre
-#### 7 L'or
+- 1 Carte
+- 2 Gagner une partie
+- 3 Les rôles
+- 4 Les champions
+- 5 La draft
+- 6 Les Objectifs neutre
+- 7 L'or
       
 ## **1 Carte 🗺️**
 
