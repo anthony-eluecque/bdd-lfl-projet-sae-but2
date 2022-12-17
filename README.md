@@ -1,6 +1,6 @@
 # **Base de donnée LFL 🗄**
 
-> Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
+> Auteur : Anthony ELUECQUE, Benjamin FOURNIER, Frédéric DOURNEL
 
 # **Sommaire 📃**
 
@@ -160,7 +160,7 @@ Les autres membres du groupe ont notamment vérifié tuple après tuple pour s�
 Cette stratégie nous a permis de rentrer les tuples sans perdre de temps, et pouvoir passer à la partie du classement automatique.
 
 
-### *2.3 La création des fonctions**
+### **2.3 La création des fonctions**
 
 Nous avons pour optimiser cette base de données et la rendre automatique, créer plusieurs fonctions.   
 Pour répondre à la problématique posée, la création de triggers permettant la gestion automatique du classement a été une grande partie de notre projet.  

@@ -2,7 +2,7 @@
     <img src= "../img/lfl.png" width=400>
 </p>
 
-> Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
+> Auteur : Anthony ELUECQUE, Benjamin FOURNIER, Frédéric DOURNEL
 
 # **Sommaire 📃**
 
