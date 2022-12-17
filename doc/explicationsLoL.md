@@ -1,5 +1,5 @@
 <p align="center">
-    <img src= "../img/lol.png" width=400>
+    <img src= "../img/lol.png" width=500>
 </p>
 
 > Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
@@ -18,7 +18,7 @@ Vous trouverez ici l'explication presque complète du déroulement d'une partie 
       
 ## **1 Carte 🗺️**
 
-<img src="../img/carte_lol.png">
+<img src="../img/carte_lol.png" width="700">
 
 Une équipe apparait en bas à gauche et une autre équipe à l'opposé en haut à droite
 
@@ -110,12 +110,12 @@ La dernière source d'or et qui est exploité le plus par le jungler, sont les m
 
 **Sbires**
 <p align="center">
-<img src="../img/sbires.jpg" width="300">
+<img src="../img/sbires.jpg" width="400">
 </p>
 
 **Monstres Jungle**
 <p align="center">
-<img src="../img/monstreJungle.jpg" width="300">
+<img src="../img/monstreJungle.jpg" width="400">
 </p>
 
 ## **8 L'expérience ✨**
