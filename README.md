@@ -123,7 +123,7 @@ Nous avons utilisé le logiciel Looping prévu pour cela :  https://www.looping-
 𝙡𝙞𝙚𝙣 : définit le type d'association entre les tables
 ```
 
-**Le MLD (Modèle conceptuel de données)**
+**Le MCD (Modèle conceptuel de données)**
 
 <img src="./img/MCD.png">
 
