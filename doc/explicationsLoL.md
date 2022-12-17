@@ -110,12 +110,17 @@ La dernière source d'or et qui est exploité le plus par le jungler, sont les m
 
 
 <p align="center">
+
 **Sbires**
+
 <img src="../img/sbires.jpg" width="400">
 </p>
 
+
 <p align="center">
+
 **Monstres Jungle**
+
 <img src="../img/monstreJungle.jpg" width="400">
 </p>
 
