@@ -30,7 +30,8 @@ La façon de gagner une partie se fait tout au long de la partie en prenant l'av
 
 
 **Nexus**
-<img src="../img/nexus.jpg" width="400">
+
+<img src="../img/nexus.jpg" width="600">
 
 ## **3 Les rôles 🎯**
 
@@ -77,20 +78,23 @@ Les dragons qui donnent des bonus permanents à l'équipe lorsqu'ils sont tués 
 
 
 **Dragons**
-<img src="../img/dragon.png" width="400">
+
+<img src="../img/dragon.png" width="600">
 
 
 Ensuite le hérault de la faille, qui se trouve à l'opposé du dragon, et qui apparait la première fois à 8 minutes et une deuxième fois 6 minutes après qu'il soit tué. Le hérault de la faille ne peut apparaître après 20 minutes. L'équipe qui tue le hérault pourra pendant un court laps de temps détruire plus rapidement les batiments ennemi.
 
 
 **Hérault**
-<img src="../img/herault.png" width="400">
+
+<img src="../img/herault.png" width="600">
 
 
 Enfin, à 20 minutes puis 6 minutes après être tués, le baron nashor apparaît au même endroit que le hérault de la faille, celui ci donne des bonus non-permanent à l'équipe qui le tue, ces bonus font effets pendant 3 minutes et permettent de détruire plus rapidement les batiments ennemi.
 
 **Baron nashor**
-<img src="../img/nash.png" width="400">
+
+<img src="../img/nash.png" width="600">
 
 
 ## **7 L'or 💰**
@@ -104,11 +108,13 @@ Une autre source d'or, en tuant les champions ennemis et c'est à ce moment là 
 La dernière source d'or et qui est exploité le plus par le jungler, sont les monstres dans la jungle, chaque camps donnent une centaine d'or
 
 **Sbires**
-<img src="../img/sbires.jpg" width="400">
+
+<img src="../img/sbires.jpg" width="600">
 
 
 **Monstres Jungle**
-<img src="../img/monstreJungle.jpg" width="400">
+
+<img src="../img/monstreJungle.jpg" width="600">
 
 
 ## **8 L'expérience ✨**
