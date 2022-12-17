@@ -30,7 +30,7 @@ La façon de gagner une partie se fait tout au long de la partie en prenant l'av
 
 
 **Nexus**
-<img src="../img/nexus.jpg">
+<img src="../img/nexus.jpg" width="400">
 
 ## **3 Les rôles 🎯**
 
