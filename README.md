@@ -51,7 +51,7 @@ Cette SAÉ nous a permis de valider plusieurs apprentissages critiques :
 
 > #### 1.1.1 Pourquoi ce sujet ?
 
-Nous avons choisi comme sujet le championnat de la ligue Française de League Of Legends (LFL). 
+Nous avons choisi comme sujet le championnat de la ligue Française de League Of Legends (LFL).   
 Étant des joueurs de ce jeu, ils nous semblaient intéressant de créer une base de donnée sur celui-ci , afin de mettre en application nos connaissances en SQL sur un sujet qui parlait à tout le groupe.
 
 > #### 1.1.2 La provenance des données
