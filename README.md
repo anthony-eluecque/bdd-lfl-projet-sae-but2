@@ -247,7 +247,7 @@ Puis pour notre base de données nous avons rempli à la main plus de 2000 tuple
 
 ### **4.2 Conclusion**
 
-A la fin de ce projet, nous avons réussi à réaliser un classement automatique fonctionnel de la LFL lors du Summer Split 2022. Ce classement, où une page web est associée à notre base de données, permet d'ajouter des équipes, des joueurs, des matchs et permet aussi de les supprimer. Nous avons aussi écrit des documents explicatifs concernant le jeu League Of Legends en lui même puis, un autre sur le fonctionnement du championnat de la LFL, ces documents permettent de comprendre facilement même pour un débutant.    
+A la fin de ce projet, nous avons réussi à réaliser un classement automatique fonctionnel de la LFL lors du Summer Split 2022. Ce classement, où une page web est associée à notre base de données, permet d'ajouter des équipes, des joueurs, des matchs et permet aussi de les supprimer. Nous avons aussi écrit des documents explicatifs concernant le jeu League Of Legends en lui même puis, un autre sur le fonctionnement du championnat de la LFL, ces documents permettent de comprendre facilement même pour un débutant. 
 Ce projet qui s'est effectué en groupe, à permis une amélioration de la communication au sein d'un groupe informatique, ce qui est une compétence indispensable pour les années suivantes.
 Pour conclure que ce projet a été réalisé, malgré les problèmes rencontrés, en utilisant une bonne communication au sein du groupe et une bonne répartition des travaux en fonction des compétences de chacun.
 
