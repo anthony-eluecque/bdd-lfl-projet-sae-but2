@@ -1,5 +1,6 @@
-
+<div style="text-align:center">
 <img src= "../img/LFL.png" width=400>
+</div>
 
 > Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
 
