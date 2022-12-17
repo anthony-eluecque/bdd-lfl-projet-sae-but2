@@ -1,6 +1,6 @@
-<div style="text-align:center">
-<img src= "../img/lfl.png" width=400>
-</div>
+<p align="center">
+    <img src= "../img/lfl.png" width=400>
+</p>
 
 > Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
 
@@ -145,14 +145,18 @@ Durant la ligue d'été 2022, il a eu 10 équipes composées toutes de 5 joueurs
 
 Durant le championnat chaque équipe se rencontre 2 fois le match aller pour le match retour ce qui fait un total de 18 matchs par équipe, le classement est réalisé en fonction des victoires de chaque équipe, dans la logique l'équipe qui le plus de victoire sera plus haut dans le classement et inversement. Si 2 équipes sont ex aequo sur le nombre de victoire, elles sont départagées par leur temps de victoire moyen, l'équipe qui a le plus court temps de victoire sera 
 
+<p align="center">
 <img src="../img/Championnat.png">
+</p>
 
 
 ## **4 Déroulement des playoffs 🏅**
 
 Lors des playoffs, qui se déroule après le championnat, les 6 premières équipes sont retenus et joue sous forme de tournoi. La troisième contre la cinquième et la quatrième contre la sixième équipe, les deux équipes gagnantes s'affrontent puis l'équipe gagnante affrontent l'équipe perdante dans le match de la première et deuxième équipe. L'équipe vainqueur passe directement en finale et l'équipe perdante affronte l'équipe comme décrit avant. L'équipe gagnante sera donc finaliste et logiquement, l'équipe gagnante est donc championne de France
 
+<p align="center">
 <img src="../img/Playoff.png">
+</p>
 
 
 
