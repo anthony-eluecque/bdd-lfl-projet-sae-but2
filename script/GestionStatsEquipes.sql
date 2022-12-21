@@ -1,3 +1,4 @@
+-- Fonction permettant de donner le winrate, le kda et la moyenne de durée des parties des équipes de la LFL.
 CREATE OR REPLACE FUNCTION gestion_stats_equipes()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -27,6 +28,8 @@ BEGIN
 END;
 $$ language plpgsql;
 
+
+-- Trigger permettant d'executer la fonction "gestion_stats_equipes" aprèes une insertion ou une modificatioon de la table "Historique_Matchs"
 CREATE TRIGGER trigger_gestion_stats_equipes
 AFTER INSERT OR UPDATE ON Historique_Matchs
 FOR EACH ROW 

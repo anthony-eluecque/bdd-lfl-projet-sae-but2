@@ -1,3 +1,4 @@
+-- Fonction permettant de calculer le KDA d'un joueur en ayant son id en paramètre.
 CREATE OR REPLACE FUNCTION calcul_kda_joueur(v_id_joueur Joueurs.id_joueur%type)
 RETURNS DECIMAL AS $$
 DECLARE
@@ -26,6 +27,8 @@ BEGIN
 END;
 $$ language plpgsql;
 
+
+-- Fonction permettant de calculer le KDA d'un joueur durant un match renseigné en paramètre.
 CREATE OR REPLACE FUNCTION calcul_kda_joueur_match (
     v_id_joueur Joueurs.id_joueur%type,
     v_id_match Matchs.id_match%type

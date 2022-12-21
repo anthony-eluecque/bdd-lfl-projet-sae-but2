@@ -1,4 +1,4 @@
--- Calcul KDA d'une Equipe entière par l'id de l'équipe
+-- Cette fonctione calcule le KDA d'une équipe en rensignant en pramaètre l'id de l'équipe.
 CREATE OR REPLACE FUNCTION calcul_kda_equipe(v_id_equipe Equipes.id_equipe%type)
 RETURNS DECIMAL AS $$ 
 DECLARE 

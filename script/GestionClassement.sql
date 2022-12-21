@@ -1,3 +1,4 @@
+-- Création de la table "classement_week_lfl" afin de pouvoir stocker le classement de la LFL durant un week précis.
 CREATE TABLE classement_week_lfl(
     id_equipe INTEGER,
     nb_win INTEGER,
@@ -5,6 +6,8 @@ CREATE TABLE classement_week_lfl(
     week INTEGER
 );
 
+
+-- Fonction permettant de mettre le classement à jour.
 CREATE OR REPLACE FUNCTION gestion_classement() RETURNS TRIGGER AS $$
 DECLARE
     v_id_equipe_gagnante classement_LFL.id_equipe%type;
@@ -68,6 +71,8 @@ BEGIN
 END;
 $$ language plpgsql;
 
+
+-- Trigger qui exécute la fonction "gestion_classement" après l'insertion de tuple dans la table "Matchs".
 CREATE TRIGGER classement_equipe
 AFTER INSERT ON Matchs -- Utilisation du mot insert
 FOR EACH ROW 

@@ -1,3 +1,4 @@
+-- Creation des tables pour les fonctions.
 CREATE TABLE classement_LFL(
     id_equipe INTEGER PRIMARY KEY,
     nb_win INTEGER NOT NULL,

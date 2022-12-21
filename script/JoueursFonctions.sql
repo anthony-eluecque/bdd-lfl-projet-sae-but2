@@ -1,3 +1,4 @@
+-- Fonction qui retourne le nom du joueur qui correspond à l'id passé en paramètre.
 create or replace function getNomJoueur(
     vid_joueur Joueurs.id_joueur%type
 ) RETURNS VARCHAR AS $$
@@ -6,6 +7,8 @@ BEGIN
 END;
 $$ language plpgsql;
 
+
+-- Fonction qui retourne le prénom du joueur qui correspond à l'id passé en paramètre.
 create or replace function getPrenomJoueur(
     vid_joueur Joueurs.id_joueur%type
 ) RETURNS VARCHAR AS $$
@@ -14,6 +17,8 @@ BEGIN
 END;
 $$ language plpgsql;
 
+
+-- Fonction qui retourne les 3 champions les plus joués d'un joueur, son id est passé en pramètre.
 create or replace function get_champions_joueur(
     v_id_joueur Joueurs.id_joueur%type
 ) RETURNS TABLE(

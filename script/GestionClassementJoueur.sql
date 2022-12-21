@@ -1,4 +1,4 @@
-
+-- Fonction d'avoir le classement des joueurs
 create or replace function get_classement_joueurs()
 RETURNS TABLE(
     vid_joueur INTEGER,
@@ -26,7 +26,7 @@ BEGIN
 END;
 $$ language plpgsql;
 
--- permet d'obtenir le placement d'un joueur dans la lfl
+-- Fonction qui permet d'obtenir le placement d'un joueur dans la LFL.
 create or replace function get_position_joueur(
     v_id_joueur Joueurs.id_joueur%type
 )

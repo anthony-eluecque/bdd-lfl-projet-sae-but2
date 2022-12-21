@@ -1,5 +1,4 @@
--- Crée une fonction qui retourne le nom d'un champion à partir de son id
-
+-- Fonction qui retourne le nom d'un champion à partir de son id.
 CREATE or REPLACE function getNomChampion(
     vid_champion champions.id_champion%type
 )
@@ -14,9 +13,7 @@ END;
 $$ language plpgsql;
 
 
--- Crée une procédure qui affiche les noms des champions banni à partir d'un id de match
--- Condition : utiliser la fonction d'au dessus
-
+-- Procédure qui affiche les noms des champions banni à partir d'un id de match.
 CREATE or REPLACE function AfficherChampionsBanMatch(
     vid_match matchs.id_match %type
 )
@@ -37,9 +34,7 @@ END;
 $$ language plpgsql;
 
 
--- Crée une procédure qui affiche les noms des champions choisis à partir d'un id de match
--- Condition : utiliser la fonction d'au dessus
-
+-- Procédure qui affiche les noms des champions choisis à partir d'un id de match.
 CREATE OR REPLACE FUNCTION AfficherChampionsChoisisMatch(
     vid_match matchs.id_match %type
 )
@@ -61,8 +56,7 @@ END;
 $$ language plpgsql;
 
 
--- Crée une fonction qui donne le nombre de fois ou un champion a été banni
-
+-- Fonction qui donne le nombre de fois ou un champion a été banni avec le nom de ce champion.
 CREATE OR REPLACE FUNCTION nbFoisChampBan(
     vnom_champion champions.nom_champion %type
 )
@@ -78,10 +72,7 @@ END;
 $$ language plpgsql; 
 
 
--- Crée une fonction qui donne le % ou il a été banni par rapport à la totalité des champions bannis
--- Pour cela, il faut passer par paramètre l'id d'un champion
--- Conditon : utiliser la fonction d'au dessus 
- 
+-- Fonction qui donne le % où un champion a été banni par rapport à la totalité des champions bannis avec l'id du champion.
 CREATE OR REPLACE FUNCTION rateBanChamp(
     vid_champion champions.id_champion %type
 )
@@ -99,7 +90,7 @@ END;
 $$ language plpgsql;
 
 
-
+-- Fonction qui permet de déterminer combien de fois un champion a été choisi en donnant le nom du champion en paramètre.
 CREATE OR REPLACE FUNCTION nbFoisChampPick(
     vnom_champion champions.nom_champion %type
 )
@@ -115,7 +106,10 @@ END;
 $$ language plpgsql; 
 
 
-CREATE OR REPLACE FUNCTION calcul_winrate_champion(vnom champions.nom_champion%type)
+-- Fonction qui calcule le pourcentage de partie gagné sur le total des parties jouées en donnant le nom du champion en paramètre.
+CREATE OR REPLACE FUNCTION calcul_winrate_champion(
+    vnom champions.nom_champion%type
+)
 RETURNS DECIMAL as $$ 
 DECLARE
     v_id_champ champions.id_champion%type;
@@ -123,7 +117,6 @@ DECLARE
     v_id_joueur Joueurs.id_joueur%type;
     total_matchs_win INTEGER;
     vid_vaiqueur Matchs.vainqueur%type;
-
 BEGIN
     total_matchs_win := 0;
     total_picks := 0;

@@ -8,6 +8,7 @@ BEGIN
 END;
 $$ language plpgsql;
 
+
 -- Moyenne de durée d'un match pour toutes les équipes
 CREATE OR REPLACE FUNCTION calcul_duree_moyenne_total_matchs()
 RETURNS TIME AS $$
@@ -15,6 +16,7 @@ BEGIN
     RETURN AVG(duree_match) FROM Matchs;
 END;
 $$ language plpgsql;
+
 
 -- Moyenne de durée d'un match à partir d'un identifiant
 CREATE OR REPLACE FUNCTION calcul_duree_moyenne_matchs_personne(
