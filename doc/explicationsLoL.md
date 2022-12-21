@@ -15,6 +15,9 @@ Vous trouverez ici l'explication presque complète du déroulement d'une partie 
 - 5 La draft
 - 6 Les Objectifs neutre
 - 7 L'or
+- 8 L'expérience
+- 9 Conclusion
+- 10 Vocabulaire
       
 ## **1 Carte 🗺️**
 
@@ -127,5 +130,44 @@ Pour conclure que League Of Legends est un jeu très complet, où son contenu au
 Il s'agit avant tout d'un jeu en équipe avec une stratégie qui change de match en match, il est impossible de regarder 2 fois la même partie, il y aura toujours des différences.
 League Of Legends est un jeu joué par des millions de joueur qui comporte une scène compétitive dans chaque région du monde. Il s'agit d'un jeu que énormément de personnes, qui s'intéresse un minimum aux jeux compétitif, ont déjà essayé car League Of Legends a maintenant 12 ans.
 
+## **10 Vocabulaire 📒**
 
-
+<table>
+    <thead>
+        <tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Expression
+            <br>
+            <td>
+                Signification
+            <br>
+        </tr>
+        <tr>
+            <td>Pick</td>
+            <td>
+                Le pick est l'action de choisir le champion que vous allez jouer durant la partie.
+            </td>
+        </tr>
+        <tr>
+            <td>Ban</td>
+            <td>
+                Désigne l'action de bannir un joueur.
+            </td>
+        </tr>
+        <tr>
+            <td>Draft</td>
+            <td>
+                Désigne la création de l'équipe. C'est donc composé des picks et bans.
+            </td>
+        </tr>
+        <tr>
+            <td>KDA</td>
+            <td>
+                Ratio entre les kills, les assistances et les morts (le calcul : kills + assistances / morts).
+            </td>
+        </tr>
+        </tbody>
+</table>
