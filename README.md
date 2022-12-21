@@ -1,4 +1,4 @@
-# **Base de donnée LFL 🗄**
+# **Classement LFL Spring 2022 🗄**
 
 > Auteur : Anthony ELUECQUE, Benjamin FOURNIER, Frédéric DOURNEL
 
