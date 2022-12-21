@@ -2,7 +2,7 @@
     <img src= "../img/lol.png" width=500>
 </p>
 
-> Auteur : Eluecque Anthony, Fournier Benjamin, Dournel Frédéric
+> Auteur : Anthony ELUECQUE, Benjamin FOURNIER, Frédéric DOURNEL
 
 Vous trouverez ici l'explication presque complète du déroulement d'une partie de League Of Legends sans expliquer des détails inutiles à la compréhension du jeu pour un débutant qui cherche seulement à regarder une scène compétitive telle que la ligue Française
 
