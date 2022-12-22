@@ -113,7 +113,7 @@ Nous avons utilisé le logiciel Looping prévu pour cela :  https://www.looping-
 ```
 𝙇é𝙜𝙚𝙣𝙙𝙚 :
 
-𝙟𝙖𝙪𝙣𝙚 : Tables de la base de donnée
+𝙟𝙖𝙪𝙣𝙚 : Tables de la base de données
 𝙗𝙡𝙚𝙪 : associations entre les tables
 𝙡𝙞𝙚𝙣 : définit le type d'association entre les tables
 ```
@@ -264,7 +264,7 @@ Vous pouvez consulter la base de données en utilisant le site web, ou bien pass
     </thead>
     <tbody>
         <tr>
-            <td>Routes  (Ajouter après http://localhost:3000/)<br>
+            <td><p>Routes</p> <p> (Ajouter après http://localhost:3000/)</p><br>
             <td>Commandes SQL derrière cette route</td>
             <td>Explication de la commande SQL</td>
         </tr>
