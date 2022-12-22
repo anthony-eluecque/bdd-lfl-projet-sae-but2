@@ -4,39 +4,35 @@
 
 # **Sommaire 📃**
 
-- 1 Introduction
+- **1 Introduction**
     - 1.1 Le thème choisi
-        - 1.1.1 Pourquoi ce sujet ?
-        - 1.1.2 La provenance des données
+        - 1.1.1 Pourquoi ce sujet
+        - 1.1.2 L'origine des données
         - 1.1.3 Notre base de données en chiffres 
         - 1.1.4 Documentation à propos de ce sujet
     - 1.2 Travail en groupe 
-- 2 La base de données
+- **2 La base de données**
     - 2.1 Structure du projet
         - 2.1.1 Le MCD
         - 2.1.2 Le MLD
     - 2.2 La mise en pratique
         - 2.2.1 Création des tables
-        - 2.2.2 Ajout & organisation des tuples
+        - 2.2.2 Ajouts & Organisation des tuples
         - 2.2.3 La méthodologie
     - 2.3 La création des fonctions
         - 2.3.1 Les fonctions utilitaires pour L'utilisation de la BDD
         - 2.3.2 La gestion automatique du classement
-- 3 Le site web associé à la BDD
+- **3 Le site web associé à la BDD**
     - 3.1 Les outils
         - 3.1.1 Vue JS | Frontend
         - 3.1.2 Node JS | Backend
-    - 3.2 Justification
-    - 3.3 Le lien entre la base de données et le site
-- 4 Conclusion 
+- **4 Conclusion**
     - 4.1 Les limites du projet
     - 4.2 Conclusion
-- 5 Mode d'emploi
+- **5 Mode d'emploi**
     - 5.1 Comment consulter la BDD
-    - 5.2 Modification de la BDD
-        - 5.2.1 Ajouter un joueur
-        - 5.2.2 Supprimer un joueur
-        - 5.2.3 Ajouter un match
+    - 5.2 Comment consulter le site web associé à la BDD
+    - 5.3 Les différentes routes de l’API
 
 ## **1 Introduction 📌**
 
@@ -46,15 +42,14 @@ Cette SAÉ nous a permis de valider plusieurs apprentissages critiques :
 - Concevoir , gérer , administrer et exploiter les données de l'entreprise et mettre à disposition toutes les informations pour un bon pilotage de l’entreprise
 - Développer (c’est-à-dire concevoir, coder, test et intégrer) une solution informatique pour un client
 
-
 ### **1.1 Le thème choisi**
 
-> #### 1.1.1 Pourquoi ce sujet ?
+> #### 1.1.1 Pourquoi ce sujet
 
 Nous avons choisi comme sujet le championnat de la ligue Française de League Of Legends (LFL).   
 Étant des joueurs de ce jeu, ils nous semblaient intéressant de créer une base de donnée sur celui-ci , afin de mettre en application nos connaissances en SQL sur un sujet qui parlait à tout le groupe.
 
-> #### 1.1.2 La provenance des données
+> #### 1.1.2 L'oreigine des données
 
 Bien qu’il existe des bases de données déjà complètes sur ce championnat, nous n’avions pas les droits sur celle-ci, nous avons donc dû partir de 0 et réfléchir à une solution efficace pour répondre à la problématique posée.  
 A travers les différents sites faisant référence à ce championnat, nous avons récupéré des informations, statistiques, …, tout ce qui semblait être exploitable.  
@@ -205,15 +200,31 @@ Permet d'obtenir le kda par joueur à partir de l'id de ce joueur
 
 ## **3 Le site web associé à la BDD 🌐**
 
+Bien que cette partie n’était pas obligatoire, il nous semblait essentiel que cette base de données soit utilisée pour un site web pour plusieurs raisons.
+La première était d’apprendre à utiliser nos connaissances dans divers domaines et de les combiner en un seul projet : une application Web reprenant notre SAE Actuel : une base de données.
+La seconde pour le seul membre du groupe en parcours développement et Application, ELUECQUE Anthony de réaliser un projet de fond lors des entretiens de Stage.
+
+Ce site web pour communiquer avec une base de données se compose en 2 parties : le backend et frontend.
+
+Le Frontend est la partie que l’utilisateur du site voit , c’est le design, les boutons, …
+Le backend est la communication entre la base de données et le site web.
+
+Il permet de lier cette base de données à une API et de pouvoir, à partir du site web, envoyer des requêtes HTTP vers l’API.
+Cette interface de programmation d’application est constamment mise à jour par rapport à notre base de données sur postgresql.
+
+L’intérêt de cette application web dans ce projet était à partir de notre base de donnée de pouvoir interagir avec celle-ci en étant un simple utilisateur et non un développeur postgresql sur ubuntu.
+Pour cela, il est évident qu’une application web soit plus explicite qu’un terminal noir et blanc
+
 ### **3.1 Les outils**
 
 > #### 3.1.1 Vue JS | Frontend
 
+Doc : https://vuejs.org/guide/introduction.html
+
 > #### 3.1.2 Node JS | Backend
 
-### **3.2 Justification**
-
-### **3.3 Le lien entre la base de données et le site**
+Doc : https://nodejs.org/docs/latest-v17.x/api/  
+Framework express : https://expressjs.com/
 
 ## **4 Conclusion 📌**
 
@@ -230,32 +241,72 @@ Pour conclure que ce projet a été réalisé, malgré les problèmes rencontré
 
 ## **5 Mode d'emploi 📜**
 
-### **5.1 Comment consulter la BDD**
+### **5.1 Comment Consulter la BDD**
 
-Pour consulter la base de données, il faut aller sur le site web et naviguer de page en page, il y a la page Accueil, Classement, Équipes et Joueurs
+Vous pouvez consulter la base de données en utilisant le site web, ou bien passer par un terminal ubuntu (version 20+) avec postgres.
+	Nous recommandons de passer par notre vidéo, qui explique en détail comment la consulter.
 
-### **5.2 Modification de la BDD**
+### **5.2 Comment consulter le site web associé à la BDD**
 
-> #### 5.2.1 Ajouter un joueur
+*Nous vous recommandons de suivre la vidéo, nous ne détaillerons pas les étapes ici mais les grandes lignes.*
 
-Le site web permet d'ajouter un joueur, il suffit d'entrer les informations du joueur puis de cliquer sur le bouton pour le rentrer dans la base de données.
+- Lancer sur deux fenêtres visuals studio codes les fichiers backend et frontend du site web.
+- Dans le fichier backend, taper dans un terminal npm run dev
+- Puis sur un navigateur, taper http://localhost:3000/ + la route de votre choix
+- Dans le fichier frontend , taper dans un terminal npm run serve
+- A nouveau dans un navigateur, taper http://localhost:8080 ou http://localhost:8081 (dépend des opérateurs) 
 
-> #### 5.2.2 Supprimer un joueur
+### **5.3 Les différentes routes de l’API**
 
-Il suffit juste d'appuyer sur le bouton supprimer à côté d'un joueur pour qu'il soit retiré définitivement de la base de données.
-
-> #### 5.2.3 Ajouter un match
-
-Pour ajouter un match il faut rentrer toutes les informations du matchs puis appuyer sur le bouton pour les rentrer dans la base de données.
-
-> #### 5.2.4 Supprimer un match
-
-Il suffit juste d'appuyer sur le bouton supprimer à côté d'un match pour qu'il soit retiré définitivement de la base de données.
-
-> #### 5.2.5 Ajouter une équipe
-
-Pour ajouter une équipe il faut rentrer toutes les informations concernant l'équipe puis appuyer sur le bouton pour les rentrer dans la base de données.
-
-> #### 5.2.6 Supprimer une équipe
-
-Il suffit juste d'appuyer sur le bouton supprimer à côté d'une équipe pour qu'elle soit retirée définitivement de la base de données.
+<table>
+    <thead>
+        <tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Routes  (Ajouter après http://localhost:3000/)<br>
+            <td>Commandes SQL derrière cette route</td>
+            <td>Explication de la commande SQL</td>
+        </tr>
+        <tr>
+            <td>/matchs/<br>
+            <td>SELECT * FROM Matchs;</td>
+            <td>Liste de tous les matchs</td>
+        </tr>
+        <tr>
+            <td>/matchs/:id_match<br>
+            <td>SELECT * FROM Matchs WHERE id_match = :id_match;</td>
+            <td>Information d’un match</td>
+        </tr>
+        <tr>
+            <td>/champions</td>
+            <td>SELECT * FROM Champions;</td>
+            <td>Champions du jeu</td>
+        </tr>
+        <tr>
+            <td>/equipes</td>
+            <td>SELECT * FROM Equipes;</td>
+            <td>Liste de toutes les équipes de la LFL</td>
+        </tr>
+        <tr>
+            <td>/equipes/:id_equipe</td>
+            <td>SELECT * FROM Equipes WHERE id_equipe = :id_equipe;</td>
+            <td>Informations d’une seule équipe à partir de son identifiant</td>
+        </tr>
+        <tr>
+            <td>/equipes/:id_equipe/kda</td>
+            <td>SELECT * FROM calcul_kda_equipe(:id_equipe);</td>
+            <td>KDA de l’équipe</td>
+        </tr>
+        <tr>
+            <td>/equipes/:id_equipe/coach</td>
+            <td>SELECT * FROM Coachs WHERE id_coach = (SELECT id_coach FROM Equipes WHERE id_equipe = :id_equipe);</td>
+            <td>Coach de l’équipe</td>
+        </tr>
+        <tr>
+            <td>/equipes/:id_equipe/stats</td>
+            <td>SELECT * FROM Statistique_lfl WHERE id_equipe = :id_equipe;</td>
+            <td>Statistiques des matchs d’une équipe à partir de son identifiant</td>
+        </tr>
+        </tbody>
+</table>
