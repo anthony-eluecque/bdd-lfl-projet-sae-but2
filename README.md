@@ -264,7 +264,7 @@ Vous pouvez consulter la base de données en utilisant le site web, ou bien pass
     </thead>
     <tbody>
         <tr>
-            <td><p>Routes</p> <p> (Ajouter après http://localhost:3000/)</p><br>
+            <td>Routes  (Ajouter après http://localhost:3000/)<br>
             <td>Commandes SQL derrière cette route</td>
             <td>Explication de la commande SQL</td>
         </tr>
