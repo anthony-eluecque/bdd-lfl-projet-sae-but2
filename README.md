@@ -215,7 +215,7 @@ Cette interface de programmation d’application est constamment mise à jour pa
 L’intérêt de cette application web dans ce projet était à partir de notre base de donnée de pouvoir interagir avec celle-ci en étant un simple utilisateur et non un développeur postgresql sur ubuntu.
 Pour cela, il est évident qu’une application web soit plus explicite qu’un terminal noir et blanc.
 
-<sub>Répositorie du site Web : https://github.com/Antorakk/lfl-app</sub>
+Répositorie du site Web : https://github.com/Antorakk/lfl-app
 
 ### **3.1 Les outils**
 
