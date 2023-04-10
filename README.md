@@ -1,6 +1,6 @@
 # **Base de donnée LFL 🗄**
 
-> Auteur : Anthony ELUECQUE, Benjamin FOURNIER, Frédéric DOURNEL
+> Auteur : [Anthony ELUECQUE](https://github.com/Antorakk), [Benjamin FOURNIER](https://github.com/Tabooret), [Frédéric DOURNEL](https://github.com/Fredericdrnl)
 
 # **Sommaire 📃**
 
